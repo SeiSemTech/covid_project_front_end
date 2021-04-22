@@ -4,6 +4,7 @@ import {LoginComponent} from "./login/login.component";
 import {AuthRoutingModule} from "./auth.routing";
 import {LottieModule} from "ngx-lottie";
 import player from 'lottie-web';
+import {MatButtonModule} from "@angular/material/button";
 
 export function playerFactory() {
   return player;
@@ -13,11 +14,12 @@ export function playerFactory() {
   declarations: [
     LoginComponent
   ],
-  imports: [
-    CommonModule,
-    AuthRoutingModule,
-    LottieModule.forRoot({ player: playerFactory })
-  ]
+    imports: [
+        CommonModule,
+        AuthRoutingModule,
+        LottieModule.forRoot({player: playerFactory}),
+        MatButtonModule
+    ]
 })
 export class AuthModule {
 }

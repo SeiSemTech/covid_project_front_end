@@ -1,0 +1,6 @@
+<p>user-form works!</p>
+<ng-container *ngIf="data.is_new">
+  <div>Si es nuevo sale esto</div>
+</ng-container>
+<div *ngIf="!data.is_new">Si no es nuevo este no sale</div>
+{{data.product_info}}
