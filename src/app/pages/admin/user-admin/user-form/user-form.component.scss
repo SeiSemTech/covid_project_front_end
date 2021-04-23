@@ -1,0 +1,56 @@
+@import "src/assets/scss/index";
+
+.form {
+  width: 70vw;
+  position: relative;
+  &-product {
+    background: $PRIMARY;
+    margin: -24px -24px 0 -24px;
+    padding: 24px;
+    color: $WHITE;
+    text-transform: uppercase;
+    font-size: 20px;
+    display: flex;
+    justify-content: space-between;
+
+    &-title {
+      font-size: 24px;
+      font-weight: 600;
+    }
+    &-data {
+      margin-top: 30px;
+      width: 80%;
+
+      &--input-c {
+        width: 80%
+      }
+
+      &--input {
+        width: 35%;
+        margin-right: 10%;
+      }
+    }
+
+    mat-icon {
+      color: #FED300;
+      font-size: 7em;
+      padding-right: 1em;
+      position: absolute;
+      top: -2rem;
+      right: 0;
+    }
+
+  }
+
+  &-buttons {
+    display: flex;
+    justify-content: flex-end;
+    :first-child {
+      margin-right: 1em;
+    }
+  }
+}
+
+mat-dialog-actions {
+  justify-content: flex-end;
+}
