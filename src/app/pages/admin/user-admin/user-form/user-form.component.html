@@ -1,6 +1,13 @@
-<p>user-form works!</p>
-<ng-container *ngIf="data.is_new">
-  <div>Si es nuevo sale esto</div>
-</ng-container>
-<div *ngIf="!data.is_new">Si no es nuevo este no sale</div>
-{{data.product_info}}
+<div class="form">
+  <div class="form-product">
+    <div class="form-product-title">{{(data.is_new ? 'Crear ' : 'Editar ') + 'usuario' }}</div>
+    <mat-icon>add_circle</mat-icon>
+  </div>
+
+  <p>user-form works!</p>
+  <ng-container *ngIf="data.is_new">
+    <div>Si es nuevo sale esto</div>
+  </ng-container>
+  <div *ngIf="!data.is_new">Si no es nuevo este no sale</div>
+  {{data.product_info}}
+</div>

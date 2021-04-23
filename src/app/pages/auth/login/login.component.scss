@@ -40,6 +40,7 @@
         color: $WHITE;
         font-size: 2.5vmax;
         font-weight: initial;
+        line-height: normal;
       }
       &-logo {
         background-image: url("/assets/svg/bosque_logo.svg");
@@ -64,9 +65,31 @@
         color: $PRIMARY;
         font-weight: bold;
         font-size: 2.55vmax;
-        margin: 3rem 0;
+        margin: 5rem 0;
+      }
+
+      &_form {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        font-size: 1vmax;
+        &_b {
+          margin-top: 3rem;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+
+          button {font-size: 1vmax;}
+
+          &-principal {
+            width: 10rem;
+            margin-bottom: 1rem;
+            height: 2.5vmax;
+          }
+        }
       }
     }
+
 
     // ------------------------------------------ Estilos de imagen lottie ------------------------------------------ //
     &-lottie {
@@ -75,4 +98,15 @@
       right: -25%;
     }
   }
+}
+
+// ----------------------------------------------- ANGULAR SETTINGS ------------------------------------------------ //
+::ng-deep.mat-checkbox-frame {
+  border-color: $PRIMARY;
+}
+
+::ng-deep.mat-form-field-outline:hover, ::ng-deep.mat-form-field-flex:hover {
+  .mat-form-field-outline-start {border-color: $PRIMARY}
+  .mat-form-field-outline-gap {border-color: $PRIMARY}
+  .mat-form-field-outline-end {border-color: $PRIMARY}
 }

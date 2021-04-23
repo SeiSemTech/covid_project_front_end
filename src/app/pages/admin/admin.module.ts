@@ -5,6 +5,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {UserFormComponent} from './user-admin/user-form/user-form.component';
 import {AdminRoutingModule} from "./admin.routing";
 import {MatDialogModule} from "@angular/material/dialog";
+import {MatIconModule} from "@angular/material/icon";
 
 
 @NgModule({
@@ -12,12 +13,13 @@ import {MatDialogModule} from "@angular/material/dialog";
     UserAdminComponent,
     UserFormComponent,
   ],
-  imports: [
-    CommonModule,
-    MatButtonModule,
-    MatDialogModule,
-    AdminRoutingModule
-  ]
+    imports: [
+        CommonModule,
+        MatButtonModule,
+        MatDialogModule,
+        AdminRoutingModule,
+        MatIconModule
+    ]
 })
 export class AdminModule {
 }
