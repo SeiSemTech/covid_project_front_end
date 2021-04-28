@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {AnimationOptions} from "ngx-lottie";
-import {Router} from "@angular/router";
-import {PATHS} from "../../../core/constants/route.constants";
-import {AuthService} from "../../../shared/services/auth.service";
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {Login} from "../../../core/models/Login";
+import {AnimationOptions} from 'ngx-lottie';
+import {Router} from '@angular/router';
+import {PATHS} from '../../../core/constants/route.constants';
+import {AuthService} from '../../../shared/services/auth.service';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Login} from '../../../core/models/Login';
+
 
 @Component({
   selector: 'app-login',
@@ -31,6 +32,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    console.log('texto prueba: '+ this.form.value.user);
     const login: Login = {username: this.form.value.user, password: this.form.value.password};
     this.authService.login(login).subscribe((response:boolean) => {
       if(response) {

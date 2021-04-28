@@ -6,6 +6,13 @@ import {UserFormComponent} from './user-admin/user-form/user-form.component';
 import {AdminRoutingModule} from "./admin.routing";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatIconModule} from "@angular/material/icon";
+import {ReactiveFormsModule} from "@angular/forms";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {LottieModule} from "ngx-lottie";
+import {playerFactory} from "../auth/auth.module";
+import {MatInputModule} from "@angular/material/input";
+import {AuthRoutingModule} from "../auth/auth.routing";
 
 
 @NgModule({
@@ -13,13 +20,19 @@ import {MatIconModule} from "@angular/material/icon";
     UserAdminComponent,
     UserFormComponent,
   ],
-    imports: [
-        CommonModule,
-        MatButtonModule,
-        MatDialogModule,
-        AdminRoutingModule,
-        MatIconModule
-    ]
+  imports: [
+    CommonModule,
+    LottieModule.forRoot({player: playerFactory}),
+    MatButtonModule,
+    MatDialogModule,
+    MatInputModule,
+    AdminRoutingModule,
+    MatIconModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatCheckboxModule,
+    AuthRoutingModule
+  ]
 })
 export class AdminModule {
 }
