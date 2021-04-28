@@ -3,11 +3,43 @@
     <div class="form-product-title">{{(data.is_new ? 'Crear ' : 'Editar ') + 'usuario' }}</div>
     <mat-icon>add_circle</mat-icon>
   </div>
+  <div class="register">
+      <div class="register_square_r">
+        <h1 class="register_square_r-title"> </h1>
+        <form [formGroup]="form" class="register_square_r_form">
+          <mat-form-field appearance="legacy">
+            <mat-label>Nombre</mat-label>
+            <input matInput placeholder="Nombres" formControlName="nombre" required/>
+          </mat-form-field>
 
-  <p>user-form works!</p>
-  <ng-container *ngIf="data.is_new">
-    <div>Si es nuevo sale esto</div>
-  </ng-container>
-  <div *ngIf="!data.is_new">Si no es nuevo este no sale</div>
-  {{data.product_info}}
+          <mat-form-field appearance="legacy">
+            <mat-label>Apellido</mat-label>
+            <input matInput placeholder="Apellidos" formControlName="apellido" required/>
+          </mat-form-field>
+
+          <mat-form-field appearance="legacy">
+            <mat-label>Cedula</mat-label>
+            <input matInput placeholder="Cedula" formControlName="cedula" required/>
+          </mat-form-field>
+
+          <mat-form-field appearance="legacy">
+            <mat-label>Usuario</mat-label>
+            <input matInput placeholder="Usuario" formControlName="usuario" required/>
+          </mat-form-field>
+
+          <mat-form-field appearance="legacy">
+            <mat-label>Contraseña</mat-label>
+            <input matInput placeholder="Contraseña" formControlName="contraseña" required/>
+          </mat-form-field>
+
+          <div class="register_square_r_form_b">
+            <button class="register_square_r_form_b-principal" mat-raised-button
+                    color="primary" [disabled]="form.invalid">Guardar</button>
+            <button class="register_square_r_form_b-principal" mat-raised-button
+                    color="primary" [disabled]="form.invalid">Cancelar</button>
+          </div>
+        </form>
+      </div>
+  </div>
 </div>
+
