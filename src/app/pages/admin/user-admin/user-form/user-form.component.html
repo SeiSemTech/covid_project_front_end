@@ -19,7 +19,7 @@
 
           <mat-form-field appearance="legacy">
             <mat-label>Cedula</mat-label>
-            <input matInput type="number" placeholder="Cedula" formControlName="id" required/>
+            <input matInput type="number" placeholder="Cedula" formControlName="document" required/>
           </mat-form-field>
 
           <mat-form-field appearance="legacy">
@@ -37,7 +37,7 @@
 
           <mat-form-field appearance="legacy">
             <mat-label>Confirmar contraseña</mat-label>
-            <input matInput placeholder="Ingrese su contraseña" [type]="hide ? 'password' : 'text'" formControlName="passwordValidate" required/>
+            <input matInput placeholder="Ingrese su contraseña" [type]="hide ? 'password' : 'text'" formControlName="confirm" required/>
             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
               <mat-icon color="primary">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>

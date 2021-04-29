@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {AnimationOptions} from "ngx-lottie";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {AuthService} from "../../../../shared/services/auth.service";
 import {User} from "../../../../core/models/User";
@@ -28,13 +28,15 @@ export class UserFormComponent implements OnInit {
     this.form = this.formBuilder.group({
       name: ['', [Validators.required]],
       lastname: ['', [Validators.required]],
-      id: ['', [Validators.required, Validators.min(5), Validators.max(12)]],
+      document: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(12)]],
       user: ['', [Validators.required]],
       password: ['', [Validators.required]],
-      passwordValidate: ['', [Validators.required]],
-    });
+      confirm: ['', [Validators.required]],
+    }, {validators: Validators.compose([
+      this.sameData, Validators.required
+      ])} );
   }
-  // tslint:disable-next-line:typedef
+
   openDialog(isNew: boolean) {
     const dialogRef = this.dialog.open(UserFormComponent, {
       data: { user_info: 'prueba', is_new: isNew }
@@ -47,8 +49,17 @@ export class UserFormComponent implements OnInit {
     });
   }
 
+  sameData(control: AbstractControl): ValidationErrors | null {
+    const password = control.get('password').value;
+    const confirm = control.get('confirm').value;
+    if (password != confirm) return { 'noMatch': true }
+    return null
+  }
+
   createUser() {
     const user: User = this.form.value;
+    user.creationDate = Date.now();
+    user.state = true;
     this.userService.createUser(user).subscribe((response: {mensaje}) => {
       if(response)
         alert(response.mensaje);

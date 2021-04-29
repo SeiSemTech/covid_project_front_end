@@ -6,4 +6,6 @@ export class User extends Login{
   username: string;
   password: string;
   id: string;
+  creationDate: number;
+  state: boolean;
 }
