@@ -13,7 +13,7 @@ import {Login} from '../../../core/models/Login';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  public options: AnimationOptions = {path: '/assets/lottie/covid_login.json'};
+  public options: AnimationOptions = {path: '/covid_project_front_end/assets/lottie/covid_login.json'};
   public hide = true;
   public form: FormGroup;
 
