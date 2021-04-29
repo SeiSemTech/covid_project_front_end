@@ -1,1 +1,27 @@
-/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/theming';
+@include mat-core();
+
+@import "assets/scss/index";
+
+$covid-primary: mat-palette($c-primary);
+$covid-accent: mat-palette($mat-green);
+$covid-warn: mat-palette($mat-red);
+
+$covid-theme: mat-light-theme((
+  color: (
+    primary: $covid-primary,
+    accent: $covid-accent,
+    warn: $covid-warn,
+  )
+));
+
+@include angular-material-theme($covid-theme);
+
+body, html {
+  padding: 0;
+  margin: 0;
+  font-family: $ROBOTO;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

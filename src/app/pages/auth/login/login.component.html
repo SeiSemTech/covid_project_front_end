@@ -1,0 +1,39 @@
+<div class="login">
+  <div class="login_square">
+    <div class="login_square_l">
+      <h1 class="login_square_l-title">Sistema de Distribución y Logística para Vacunación de Covid</h1>
+      <div class="login_square_l-logo"></div>
+    </div>
+    <div class="login_square_r">
+      <h1 class="login_square_r-title">Acceso de usuario</h1>
+      <form [formGroup]="form" (ngSubmit)="login()" class="login_square_r_form">
+
+        <mat-form-field appearance="outline">
+          <mat-label>Usuario</mat-label>
+          <input matInput placeholder="Ingrese su usuario" formControlName="user" required/>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Contraseña</mat-label>
+          <input matInput placeholder="Ingrese su contraseña" [type]="hide ? 'password' : 'text'" formControlName="password" required/>
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon color="primary">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+        <mat-checkbox formControlName="checkbox" color="primary">Recordar en este dispositivo</mat-checkbox>
+
+        <div class="login_square_r_form_b">
+          <button class="login_square_r_form_b-principal" mat-raised-button
+                  color="primary" [disabled]="form.invalid">INGRESAR</button>
+          <button mat-button color="primary">Olvide mi contraseña</button>
+        </div>
+
+      </form>
+
+    </div>
+    <div class="login_square-lottie">
+      <ng-lottie width="35vmax" [options]="options"></ng-lottie>
+    </div>
+  </div>
+</div>
+
