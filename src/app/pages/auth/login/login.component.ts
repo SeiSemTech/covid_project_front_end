@@ -27,17 +27,11 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  goToAdmin() {
-    this.router.navigate([PATHS.HOME_ADMIN.PRINCIPAL]);
-  }
-
   login() {
-    console.log('texto prueba: '+ this.form.value.user);
-    const login: Login = {username: this.form.value.user, password: this.form.value.password};
-    this.authService.login(login).subscribe((response:boolean) => {
-      if(response) {
+    const login: Login = this.form.value;
+    this.authService.login(login).subscribe((response: {jwt}) => {
+      if(response && response.jwt)
         this.router.navigate([PATHS.HOME_ADMIN.PRINCIPAL]);
-      }
     } );
   }
 

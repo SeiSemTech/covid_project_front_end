@@ -1,3 +1,4 @@
 export const URL = {
-  LOGIN: `login`,
+  LOGIN: `/login`,
+  USER: `/user`,
 };

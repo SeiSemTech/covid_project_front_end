@@ -4,12 +4,14 @@
 @import "assets/scss/index";
 
 $covid-primary: mat-palette($c-primary);
+$covid-accent: mat-palette($mat-green);
+$covid-warn: mat-palette($mat-red);
 
 $covid-theme: mat-light-theme((
   color: (
     primary: $covid-primary,
-    accent: $mat-green,
-    warn: $mat-red,
+    accent: $covid-accent,
+    warn: $covid-warn,
   )
 ));
 
