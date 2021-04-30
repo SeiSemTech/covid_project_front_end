@@ -13,6 +13,7 @@ import {LottieModule} from "ngx-lottie";
 import {playerFactory} from "../auth/auth.module";
 import {MatInputModule} from "@angular/material/input";
 import {AuthRoutingModule} from "../auth/auth.routing";
+import {MessageModule} from "../../shared/modules/message/message.module";
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import {AuthRoutingModule} from "../auth/auth.routing";
     ReactiveFormsModule,
     MatFormFieldModule,
     MatCheckboxModule,
-    AuthRoutingModule
+    AuthRoutingModule,
+    MessageModule
   ]
 })
 export class AdminModule {

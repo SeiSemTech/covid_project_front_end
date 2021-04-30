@@ -1,6 +1,6 @@
 export const PATHS = {
   AUTHENTICATION: {
-    PRINCIPAL: `login`,
+    PRINCIPAL: ``,
   },
   HOME_ADMIN: {
     PRINCIPAL: `admin`

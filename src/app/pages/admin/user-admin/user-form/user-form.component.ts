@@ -1,12 +1,9 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
-import {AnimationOptions} from "ngx-lottie";
 import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators} from "@angular/forms";
-import {Router} from "@angular/router";
-import {AuthService} from "../../../../shared/services/auth.service";
 import {User} from "../../../../core/models/User";
-import {PATHS} from "../../../../core/constants/route.constants";
 import {UserService} from "../../../../shared/services/user.service";
+import {MessageComponent} from "../../../../shared/modules/message/message.component";
 
 @Component({
   selector: 'app-user-form',
@@ -65,6 +62,12 @@ export class UserFormComponent implements OnInit {
         alert(response.mensaje);
     } );
 
+  }
+
+  messageResponse() {
+    const dialogRef = this.dialog.open(MessageComponent, {
+      data: { user_info: 'prueba' }
+    });
   }
 
 }
