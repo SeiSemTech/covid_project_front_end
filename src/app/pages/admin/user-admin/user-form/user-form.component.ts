@@ -59,14 +59,14 @@ export class UserFormComponent implements OnInit {
     user.state = true;
     this.userService.createUser(user).subscribe((response: {mensaje}) => {
       if(response)
-        alert(response.mensaje);
+        this.messageResponse(response.mensaje);
     } );
 
   }
 
-  messageResponse() {
-    const dialogRef = this.dialog.open(MessageComponent, {
-      data: { user_info: 'prueba' }
+  messageResponse(message: string) {
+    this.dialog.open(MessageComponent, {
+      data: { message: message, icon: "check", button: "¡Listo!" }
     });
   }
 
