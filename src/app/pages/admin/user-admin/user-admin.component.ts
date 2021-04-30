@@ -5,6 +5,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AnimationOptions} from 'ngx-lottie';
 import {Router} from '@angular/router';
 import {AuthService} from '../../../shared/services/auth.service';
+import {PATHS} from "../../../core/constants/route.constants";
 
 @Component({
   selector: 'app-user-admin',
@@ -16,19 +17,13 @@ export class UserAdminComponent implements OnInit {
   public hide = true;
   public form: FormGroup;
 
-  constructor(public dialog: MatDialog, private router: Router, private authService: AuthService, private formBuilder: FormBuilder) { }
+  constructor(public dialog: MatDialog, private router: Router) { }
 
   testMessage: string = "";
 
   ngOnInit(): void {
-    this.form = this.formBuilder.group({
-      user: ['', [Validators.required]],
-      password: ['', [Validators.required]],
-      checkbox: [false],
-    });
   }
 
-  // tslint:disable-next-line:typedef
   openDialog(isNew: boolean) {
     const dialogRef = this.dialog.open(UserFormComponent, {
       data: { user_info: 'prueba', is_new: isNew }
@@ -39,5 +34,9 @@ export class UserAdminComponent implements OnInit {
         this.testMessage = result.user_info;
       }
     });
+  }
+
+  closeSession() {
+    this.router.navigate([PATHS.AUTHENTICATION.PRINCIPAL]);
   }
 }

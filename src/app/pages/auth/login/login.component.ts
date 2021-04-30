@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AnimationOptions} from 'ngx-lottie';
 import {Router} from '@angular/router';
 import {PATHS} from '../../../core/constants/route.constants';
 import {AuthService} from '../../../shared/services/auth.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Login} from '../../../core/models/Login';
+import {MatDialog} from "@angular/material/dialog";
+import {MessageComponent} from "../../../shared/modules/message/message.component";
 
 
 @Component({
@@ -17,21 +19,26 @@ export class LoginComponent implements OnInit {
   public hide = true;
   public form: FormGroup;
 
-  constructor(private router: Router, private authService: AuthService, private formBuilder: FormBuilder) { }
+  constructor(private router: Router, private authService: AuthService, private formBuilder: FormBuilder, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      user: ['', [Validators.required]],
+      username: ['', [Validators.required]],
       password: ['', [Validators.required]],
-      checkbox: [false],
     });
   }
 
   login() {
     const login: Login = this.form.value;
-    this.authService.login(login).subscribe((response: {jwt}) => {
-      if(response && response.jwt)
+    this.authService.login(login).subscribe((response: {jwt, mensaje}) => {
+      console.log(response)
+      if(response && response.jwt) {
         this.router.navigate([PATHS.HOME_ADMIN.PRINCIPAL]);
+      } else {
+          this.dialog.open(MessageComponent, {
+            data: { message: response.mensaje, icon: "sad_emoji", button: "¡Ooops!" }
+          });
+      }
     } );
   }
 
