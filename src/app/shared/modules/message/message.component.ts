@@ -11,7 +11,7 @@ export class MessageComponent implements OnInit {
 
   public options: AnimationOptions = {path: '/assets/lottie/' + this.data.icon + '.json'};
 
-  constructor(public dialogRef: MatDialogRef<MessageComponent>, @Inject(MAT_DIALOG_DATA) public data: { message: string; icon: string; button: string}) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: { message: string; icon: string; button: string}) { }
 
   ngOnInit(): void {
   }

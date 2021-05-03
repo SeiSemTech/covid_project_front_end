@@ -30,7 +30,7 @@
           <mat-form-field appearance="legacy">
             <mat-label>Contraseña</mat-label>
             <input matInput placeholder="Ingrese su contraseña" [type]="hide ? 'password' : 'text'" formControlName="password" required/>
-            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" type="button">
               <mat-icon color="primary">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
           </mat-form-field>
@@ -38,15 +38,15 @@
           <mat-form-field appearance="legacy">
             <mat-label>Confirmar contraseña</mat-label>
             <input matInput placeholder="Ingrese su contraseña" [type]="hide ? 'password' : 'text'" formControlName="confirm" required/>
-            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" type="button">
               <mat-icon color="primary">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
           </mat-form-field>
 
           <div class="register_square_r_form_b">
-            <button class="register_square_r_form_b-principal" mat-raised-button
+            <button class="register_square_r_form_b-principal" mat-raised-button type="submit"
                     color="primary" [disabled]="form.invalid">Guardar</button>
-            <button class="register_square_r_form_b-principal" mat-raised-button color="warn" (click)="dialogRef.close()">Cancelar</button>
+            <button class="register_square_r_form_b-principal" mat-raised-button type="button" color="warn" (click)="dialogRef.close()">Cancelar</button>
           </div>
         </form>
       </div>
