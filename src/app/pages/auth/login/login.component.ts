@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(login).subscribe((response: {jwt, mensaje}) => {
       console.log(response)
       if(response && response.jwt) {
-        this.router.navigate([PATHS.HOME_ADMIN.PRINCIPAL]);
+        this.router.navigate([PATHS.DASHBOARD.MAIN]);
       } else {
           this.dialog.open(MessageComponent, {
             data: { message: response.mensaje, icon: "sad_emoji", button: "¡Ooops!" }

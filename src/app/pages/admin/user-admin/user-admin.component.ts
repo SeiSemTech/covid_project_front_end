@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import {UserFormComponent} from './user-form/user-form.component';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormGroup} from '@angular/forms';
 import {AnimationOptions} from 'ngx-lottie';
-import {Router} from '@angular/router';
-import {AuthService} from '../../../shared/services/auth.service';
-import {PATHS} from "../../../core/constants/route.constants";
 
 @Component({
   selector: 'app-user-admin',
@@ -17,7 +14,7 @@ export class UserAdminComponent implements OnInit {
   public hide = true;
   public form: FormGroup;
 
-  constructor(public dialog: MatDialog, private router: Router) { }
+  constructor(public dialog: MatDialog) { }
 
   testMessage: string = "";
 
@@ -36,7 +33,4 @@ export class UserAdminComponent implements OnInit {
     });
   }
 
-  closeSession() {
-    this.router.navigate([PATHS.AUTHENTICATION.PRINCIPAL]);
-  }
 }
