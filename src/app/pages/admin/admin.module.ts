@@ -12,6 +12,7 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
 import {LottieModule} from "ngx-lottie";
 import {playerFactory} from "../auth/auth.module";
 import {MatInputModule} from "@angular/material/input";
+import {SharedModule} from "../../shared/shared.module";
 import {AuthRoutingModule} from "../auth/auth.routing";
 import {MessageModule} from "../../shared/modules/message/message.module";
 
@@ -22,6 +23,7 @@ import {MessageModule} from "../../shared/modules/message/message.module";
     UserFormComponent,
   ],
   imports: [
+    SharedModule,
     CommonModule,
     LottieModule.forRoot({player: playerFactory}),
     MatButtonModule,

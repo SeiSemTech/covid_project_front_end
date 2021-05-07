@@ -9,12 +9,12 @@
         <form [formGroup]="form" (ngSubmit)="createUser()" class="register_square_r_form">
           <mat-form-field appearance="legacy">
             <mat-label>Nombre</mat-label>
-            <input matInput placeholder="Nombres" formControlName="name" required/>
+            <input matInput type="letter" placeholder="Nombres" formControlName="name" required/>
           </mat-form-field>
 
           <mat-form-field appearance="legacy">
             <mat-label>Apellido</mat-label>
-            <input matInput placeholder="Apellidos" formControlName="lastname" required/>
+            <input matInput type="letter" placeholder="Apellidos" formControlName="lastname" required/>
           </mat-form-field>
 
           <mat-form-field appearance="legacy">
@@ -24,7 +24,7 @@
 
           <mat-form-field appearance="legacy">
             <mat-label>Usuario</mat-label>
-            <input matInput placeholder="Usuario" formControlName="user" required/>
+            <input matInput type="user" placeholder="Usuario" formControlName="user" required/>
           </mat-form-field>
 
           <mat-form-field appearance="legacy">
