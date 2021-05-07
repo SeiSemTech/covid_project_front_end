@@ -23,8 +23,8 @@ export class UserFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      name: ['', [Validators.required]],
-      lastname: ['', [Validators.required]],
+      name: ['', [Validators.required, Validators.pattern('[A-Za-zñÑ ]+')]],
+      lastname: ['', [Validators.required, Validators.pattern('[A-Za-zñÑ ]+')]],
       document: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(12)]],
       user: ['', [Validators.required]],
       password: ['', [Validators.required]],
