@@ -23,6 +23,7 @@
     "@angular/router": "~11.2.10",
     "lottie-web": "^5.7.8",
     "ngx-lottie": "^6.4.0",
+    "jwt-decode": "^2.2.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"

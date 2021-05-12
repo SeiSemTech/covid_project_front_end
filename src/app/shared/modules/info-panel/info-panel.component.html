@@ -1,0 +1,9 @@
+<div class="info_header">
+  <div class="info_header-icon" [style.background-image]="urlResolver(icon)"></div>
+  <div class="info_header-title">{{title}}</div>
+</div>
+<form class="info_body">
+  <div class="info_body-content"><ng-content></ng-content></div>
+  <div class="info_body-button" *ngIf="form"><button mat-button color="accent" [disabled]="form.invalid" type="submit">Guardar</button></div>
+</form>
+

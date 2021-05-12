@@ -17,11 +17,11 @@ $covid-theme: mat-light-theme((
 
 @include angular-material-theme($covid-theme);
 
-body, html {
-  padding: 0;
+body {
   margin: 0;
   font-family: $ROBOTO;
+  width: calc(100vw - 4rem);
+  min-height: calc(100vh - 2rem);
+  background-color: $GRAY-100;
+  padding: 0 2rem
 }
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

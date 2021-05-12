@@ -1,5 +1,66 @@
-<button  mat-raised-button (click)="openDialog(true)" color="primary">Crear usuario</button>
+<div class="container">
+  <div class="profile">
+    <app-info-panel title="Perfiles del usuario" icon="profile" (submit)="updateUser()" [formGroup]="form">
+      <div>Agregar otro perfil al usuario
+        <mat-icon>plus</mat-icon>
+      </div>
+      <mat-form-field appearance="legacy">
+        <mat-label>Perfil</mat-label>
+        <mat-select [formControl]="profile" required>
+          <mat-option *ngFor="let profile of profiles" [value]="profile"> {{profile.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </app-info-panel>
+    <div class="profile_user" *ngIf="user.profile">
+      <div class="profile_user-current" *ngFor="let profile of user.profile">
+        <div>{{profile.name}}</div>
+        <mat-icon color="warn">delete</mat-icon>
+      </div>
+    </div>
+  </div>
 
+  <div class="users">
+    <app-title-bar title="Usuarios del sistema" icon="system_user" color="blue"></app-title-bar>
+    <div class="users_table">
+      <div class="users_table_top">
 
+        <mat-form-field class="users_table_top-filter">
+          <mat-label>Filter</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Filtro" #input>
+          <mat-icon matSuffix color="primary">filter_alt</mat-icon>
+        </mat-form-field>
+        <button mat-button (click)="openDialog()">Adicionar nuevo usuario al sistema
+          <mat-icon color="primary" style="padding-left: 1rem">add_circle</mat-icon>
+        </button>
+      </div>
 
+      <table mat-table [dataSource]="dataSource" class="users_table_content">
+        <mat-text-column name="name" headerText="Nombre"></mat-text-column>
+        <mat-text-column name="lastname" headerText="Apellido"></mat-text-column>
+        <mat-text-column name="username" headerText="Usuario"></mat-text-column>
+        <mat-text-column name="document" headerText="Documento"></mat-text-column>
+        <mat-text-column name="creationDate" headerText="Fecha ingreso"></mat-text-column>
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let action" class="users_table_content-actions">
+            <button mat-icon-button color="accent" (click)="openDialog(action)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="algo(action.position)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
 
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="example-element-row"
+            (click)="getSelectedUser(row)"></tr>
+
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="6">No data matching the filter "{{input.value}}"</td>
+        </tr>
+      </table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
+  </div>
+</div>
