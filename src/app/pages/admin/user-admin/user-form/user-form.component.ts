@@ -18,8 +18,9 @@ export class UserFormComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<UserFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: User,
-    public dialog: MatDialog, private userService: UserService, private formBuilder: FormBuilder) {
-  }
+    public dialog: MatDialog,
+    private userService: UserService,
+    private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -46,19 +47,17 @@ export class UserFormComponent implements OnInit {
     this.data.creationDate = Date.now();
     this.data.state = true;
     if (this.data.id) {
-      this.userService.updateUser(this.data)
-        .subscribe(response  => this.msmResponse(response, "¡Actualizado exitosamente!" ));
+      this.userService.updateUser(this.data).subscribe(response  => this.msmResponse(response));
     } else {
-      this.userService.createUser(this.data)
-        .subscribe(response => this.msmResponse(response,  "¡Creado exitosamente!"));
+      this.userService.createUser(this.data).subscribe(response => this.msmResponse(response));
     }
   }
 
-  msmResponse(response: { mensaje, data }, message: string) {
+  msmResponse(response: { mensaje, data }) {
     if (response) {
       this.dialogRef.close(response.data);
       this.dialog.open(MessageComponent, {
-        data: {message: response.mensaje, icon: "check", button: message}
+        data: {message: response.mensaje, icon: "check", button: "¡Listo!"}
       });
     }
   }

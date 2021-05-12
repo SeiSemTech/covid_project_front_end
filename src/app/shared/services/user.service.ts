@@ -26,4 +26,8 @@ export class UserService {
   public updateUser(user: User): Observable<{ mensaje, data }> {
     return this.http.put(this.urlUser+'/updateUsuario', user).pipe(map((data:{ mensaje, data }) => data));
   }
+
+  public deleteUser(id: string): Observable<{ mensaje, data }> {
+    return this.http.post(this.urlUser+'/deleteUsuario', id).pipe(map((data:{ mensaje, data }) => data));
+  }
 }
