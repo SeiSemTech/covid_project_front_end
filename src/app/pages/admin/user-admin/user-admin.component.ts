@@ -32,8 +32,8 @@ export class UserAdminComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.profiles = this.profileService.getAllProfiles();
-    this.userService.getAllUsers().subscribe((data: { response: User[] }) => {
+    this.profileService.getAllProfiles().subscribe(data => this.profiles = data.response);
+    this.userService.getAllUsers().subscribe(data => {
       const userTable: User[] = data.response.filter(user => user.state === true);
       this.dataSource = new MatTableDataSource<User>(userTable)
     });

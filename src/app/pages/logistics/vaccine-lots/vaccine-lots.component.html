@@ -1,14 +1,34 @@
 <div class="container">
   <div style="width: 30%">
     <app-info-panel title="Registrar lotes de vacunas" icon="delivery" (submit)="createBatch()" [formGroup]="form">
-      <div>Agregar otro perfil al usuario
-        <mat-icon>plus</mat-icon>
+      <div style="display: flex; justify-content: space-around; flex-wrap: wrap">
+        <mat-form-field appearance="legacy" style="width: 45%;">
+          <mat-label>Id de entrega</mat-label>
+          <input matInput type="number" formControlName="id" required/>
+        </mat-form-field>
+        <mat-form-field appearance="legacy" style="width: 45%;">
+          <mat-label>Numero de lotes</mat-label>
+          <input matInput type="number" formControlName="numeroLote" required/>
+        </mat-form-field>
+        <mat-form-field appearance="legacy" style="width: 45%;">
+          <mat-label>Cantidad vacunas por lote</mat-label>
+          <input matInput type="number" formControlName="cantidadDosis" required/>
+        </mat-form-field>
+        <mat-form-field appearance="legacy" style="width: 45%;">
+          <mat-label>Costo</mat-label>
+          <input matInput type="number" formControlName="costo" required/>
+        </mat-form-field>
+        <mat-form-field appearance="legacy">
+          <mat-label>Laboratorio</mat-label>
+          <mat-select formControlName="idLaboratorio" required>
+            <mat-option *ngFor="let laboratory of laboratories" [value]="laboratory.id"> {{laboratory.nombre}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="legacy" style="width: 45%;">
+          <mat-label>Fecha</mat-label>
+          <input matInput type="number" formControlName="fechaAdquisicion" required/>
+        </mat-form-field>
       </div>
-
-      <mat-form-field appearance="legacy">
-        <mat-label>Nombre</mat-label>
-        <input matInput type="letter" placeholder="Nombres" formControlName="name" required/>
-      </mat-form-field>
 
 
     </app-info-panel>

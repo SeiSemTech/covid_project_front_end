@@ -5,6 +5,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Profile} from "../../core/models/Profile";
 import {map} from "rxjs/operators";
+import {Laboratory} from "../../core/models/laboratory";
 
 @Injectable({
   providedIn: 'root'
@@ -15,9 +16,11 @@ export class ProfileService {
 
   constructor(private http: HttpClient) { }
 
-  public getAllProfiles(): Profile[] {
-    const arrayProfile: Profile[] = [{id: 1, name: "Admin sistema"}, {id: 2, name: "Logística"}, {id: 3, name: "Personal salud"}];
-    return arrayProfile;
+  public getAllProfiles():  Observable<{ response: Profile[] }> {
+    //DATOS QUEMADOS
+    const profiles: Profile[] = [{id: 1, name: "Admin sistema"}, {id: 2, name: "Logística"}, {id: 3, name: "Personal salud"}];
+    return new Observable<{response: Profile[]}>(observer => observer.next({response: profiles}));
+    //URL ORIGINAL
     // return this.http.get(this.urlProfile+'/getPerfiles').pipe(map((profile: Profile[]) => profile));
   }
 }
