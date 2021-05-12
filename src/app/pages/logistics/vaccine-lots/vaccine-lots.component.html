@@ -18,10 +18,11 @@
           <mat-label>Costo</mat-label>
           <input matInput type="number" formControlName="costo" required/>
         </mat-form-field>
-        <mat-form-field appearance="legacy">
+        <mat-form-field appearance="legacy" style="width: 45%;">
           <mat-label>Laboratorio</mat-label>
           <mat-select formControlName="idLaboratorio" required>
-            <mat-option *ngFor="let laboratory of laboratories" [value]="laboratory.id"> {{laboratory.nombre}}</mat-option>
+            <mat-option *ngFor="let laboratory of laboratories"
+                        [value]="laboratory.id"> {{laboratory.nombre}}</mat-option>
           </mat-select>
         </mat-form-field>
         <mat-form-field appearance="legacy" style="width: 45%;">
@@ -41,8 +42,46 @@
     </div>
   </div>
 
-  <div style="width: 65%">
+  <div class="vaccine_lots">
     <app-title-bar title="Lotes en sistema" icon="vaccine_lots" color="yellow"></app-title-bar>
 
+    <div class="vaccine_lots_table">
+      <div class="vaccine_lots_table_top">
+        <mat-form-field class="vaccine_lots_table_top-filter">
+          <mat-label>Filter</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Filtro" #input>
+          <mat-icon matSuffix color="primary">filter_alt</mat-icon>
+        </mat-form-field>
+
+      </div>
+
+      <table mat-table [dataSource]="dataSource" class="vaccine_lots_table_content">
+        <mat-text-column name="id" headerText="Id lote"></mat-text-column>
+        <mat-text-column name="cantidadDosis" headerText="Cantidad"></mat-text-column>
+        <mat-text-column name="idLaboratorio" headerText="laboratorio"></mat-text-column>
+        <mat-text-column name="fechaAdquisicion" headerText="fecha entrega"></mat-text-column>
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let action" class="vaccine_lots_table_content-actions">
+            <button mat-icon-button color="accent">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        <tr class="mat-row" *matNoDataRow>
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="5">No data matching the filter "{{input.value}}"</td>
+        </tr>
+      </table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+    </div>
   </div>
 </div>

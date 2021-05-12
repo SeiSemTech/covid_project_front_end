@@ -5,6 +5,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
 import {Lot} from "../../core/models/Lot";
+import {Laboratory} from "../../core/models/laboratory";
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,13 @@ export class VaccineLotsService {
   }
 
   public getAllVaccineLots(): Observable<{response: Lot[]}> {
+    //DATOS QUEMADOS
+    const laboratories: Lot[] = [
+      {id: 1, idLaboratorio: 0, cantidadDosis: 400, costo: 2000, fechaAdquisicion: 122, numeroLote: 1},
+      {id: 2, idLaboratorio: 0, cantidadDosis: 400, costo: 2000, fechaAdquisicion: 122, numeroLote: 1},
+      {id: 3, idLaboratorio: 0, cantidadDosis: 400, costo: 2000, fechaAdquisicion: 122, numeroLote: 1}]
+    return new Observable<{response: Lot[]}>(observer => observer.next({response: laboratories}));
+    //URL ORIGINAL
     return this.http.get(this.urlVaccine+'/getLotes').pipe(map((lot: {response: Lot[]}) => lot));
   }
 

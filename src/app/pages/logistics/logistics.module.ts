@@ -11,6 +11,9 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import {SharedModule} from "../../shared/shared.module";
 import {TitleBarModule} from "../../shared/modules/title-bar/title-bar.module";
+import {MatTableModule} from "@angular/material/table";
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
   declarations: [
@@ -27,7 +30,10 @@ import {TitleBarModule} from "../../shared/modules/title-bar/title-bar.module";
     ReactiveFormsModule,
     MatInputModule,
     SharedModule,
-    TitleBarModule
+    TitleBarModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatButtonModule
   ]
 })
 export class LogisticsModule { }

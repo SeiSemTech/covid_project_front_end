@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Profile} from "../../../core/models/Profile";
 import {Laboratory} from "../../../core/models/laboratory";
 import {LaboratoryService} from "../../../shared/services/laboratory.service";
+import {MatTableDataSource} from "@angular/material/table";
+import {Lot} from "../../../core/models/Lot";
+import {User} from "../../../core/models/User";
+import {VaccineLotsService} from "../../../shared/services/vaccine-lots.service";
 
 @Component({
   selector: 'app-vaccine-lots',
@@ -11,17 +14,23 @@ import {LaboratoryService} from "../../../shared/services/laboratory.service";
 })
 export class VaccineLotsComponent implements OnInit {
 
+  displayedColumns: string[] = ['id', 'cantidadDosis', 'idLaboratorio', 'fechaAdquisicion', 'action'];
   public form: FormGroup;
+  dataSource = new MatTableDataSource<Lot>();
+  lot = new Lot();
   laboratories = [new Laboratory()];
 
-  constructor(private formBuilder: FormBuilder, private laboratoryService: LaboratoryService) { }
+  constructor(private formBuilder: FormBuilder, private laboratoryService: LaboratoryService, private vaccineLotsService: VaccineLotsService) { }
 
   ngOnInit(): void {
     this.laboratoryService.getAllLaboratories().subscribe(data => this.laboratories = data.response);
+    this.vaccineLotsService.getAllVaccineLots().subscribe(data => {
+      this.dataSource = new MatTableDataSource<Lot>(data.response)
+    });
     this.form = this.formBuilder.group({
-      id: ['', [Validators.required, Validators.pattern('[A-Za-zñÑ ]+')]],
-      numeroLote: ['', [Validators.required, Validators.pattern('[A-Za-zñÑ ]+')]],
-      cantidadDosis: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(12)]],
+      id: ['', [Validators.required]],
+      numeroLote: ['', [Validators.required]],
+      cantidadDosis: ['', [Validators.required]],
       costo: ['', [Validators.required]],
       fechaAdquisicion: ['', [Validators.required]],
       idLaboratorio: ['', [Validators.required]],
@@ -30,6 +39,10 @@ export class VaccineLotsComponent implements OnInit {
 
   createBatch() {
 
+  }
+
+  applyFilter(event: Event) {
+    this.dataSource.filter = (event.target as HTMLInputElement).value.trim().toLowerCase();
   }
 
 }
