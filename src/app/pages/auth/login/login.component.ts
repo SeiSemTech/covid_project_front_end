@@ -7,6 +7,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Login} from '../../../core/models/Login';
 import {MatDialog} from "@angular/material/dialog";
 import {MessageComponent} from "../../../shared/modules/message/message.component";
+import * as jwt_decode from 'jwt-decode';
 
 
 @Component({
@@ -33,6 +34,9 @@ export class LoginComponent implements OnInit {
     this.authService.login(login).subscribe((response: {jwt, mensaje}) => {
       console.log(response)
       if(response && response.jwt) {
+        const decoded = jwt_decode(response.jwt);
+        console.log(decoded.sub);
+        localStorage.setItem('token', response.jwt);
         this.router.navigate([PATHS.DASHBOARD.MAIN]);
       } else {
           this.dialog.open(MessageComponent, {

@@ -1,0 +1,55 @@
+@import "../../../../assets/scss/index";
+
+.header {
+  margin: 0 -2rem;
+  padding-bottom: 2rem;
+
+  &_principal {
+    background-color: $PRIMARY;
+    height: 4.2rem;
+    display: flex;
+    color: $WHITE;
+    justify-content: space-between;
+    padding: 0 3rem;
+    box-shadow: 0 10px 20px -15px rgba(0,0,0,0.4);
+    position:relative;
+    align-items: center;
+    z-index: 50;
+
+    &_l {
+      display: flex;
+      align-items: center;
+
+      &-logo {
+        background-image: url('../../../../assets/svg/bosque_logo_white.svg');
+        width: 3rem;
+        height: 3rem;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+        filter: light(10);
+      }
+
+      &-title {
+        font-size: 2.3vmax;
+        padding-left: 1rem;
+      }
+    }
+
+    &_r {
+      mat-icon {
+        margin-left: 1rem;
+      }
+    }
+  }
+
+  &_secondary {
+    background-color: $WHITE;
+    height: 3.2rem;
+    display: flex;
+    padding: 0 1rem;
+    align-items: center;
+    color: #D5D5D5;
+    font-size: 1.3vmax
+  }
+}

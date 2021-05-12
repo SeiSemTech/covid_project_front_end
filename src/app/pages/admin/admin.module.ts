@@ -15,7 +15,12 @@ import {MatInputModule} from "@angular/material/input";
 import {SharedModule} from "../../shared/shared.module";
 import {AuthRoutingModule} from "../auth/auth.routing";
 import {MessageModule} from "../../shared/modules/message/message.module";
-
+import {MatOptionModule} from "@angular/material/core";
+import {MatSelectModule} from '@angular/material/select';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {InfoPanelModule} from "../../shared/modules/info-panel/info-panel.module";
+import {TitleBarModule} from "../../shared/modules/title-bar/title-bar.module";
 
 @NgModule({
   declarations: [
@@ -35,7 +40,13 @@ import {MessageModule} from "../../shared/modules/message/message.module";
     MatFormFieldModule,
     MatCheckboxModule,
     AuthRoutingModule,
-    MessageModule
+    MessageModule,
+    MatOptionModule,
+    MatSelectModule,
+    MatTableModule,
+    MatPaginatorModule,
+    InfoPanelModule,
+    TitleBarModule
   ]
 })
 export class AdminModule {

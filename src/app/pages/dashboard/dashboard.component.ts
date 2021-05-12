@@ -16,6 +16,7 @@ export class DashboardComponent implements OnInit {
   }
 
   closeSession() {
+    localStorage.clear();
     this.router.navigate([PATHS.AUTHENTICATION.PRINCIPAL]);
   }
 
