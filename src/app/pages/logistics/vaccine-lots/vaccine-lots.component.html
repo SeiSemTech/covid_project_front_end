@@ -1,1 +1,28 @@
-<p>vaccine-lots works!</p>
+<div class="container">
+  <div style="width: 30%">
+    <app-info-panel title="Registrar lotes de vacunas" icon="delivery" (submit)="createBatch()" [formGroup]="form">
+      <div>Agregar otro perfil al usuario
+        <mat-icon>plus</mat-icon>
+      </div>
+
+      <mat-form-field appearance="legacy">
+        <mat-label>Nombre</mat-label>
+        <input matInput type="letter" placeholder="Nombres" formControlName="name" required/>
+      </mat-form-field>
+
+
+    </app-info-panel>
+    <div class="announce">
+      <div class="announce-image"></div>
+      <div class="announce-text">
+        Recuerde que los lotes ya enviados <b>no podrán ser modificados</b>, por lo cual se sugiere revisar la
+        información antes de realizar el envió de los lotes.
+      </div>
+    </div>
+  </div>
+
+  <div style="width: 65%">
+    <app-title-bar title="Lotes en sistema" icon="vaccine_lots" color="yellow"></app-title-bar>
+
+  </div>
+</div>

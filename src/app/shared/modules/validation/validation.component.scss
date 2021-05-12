@@ -1,0 +1,17 @@
+.validation {
+  &_buttons {
+    width: 100%;
+    margin-top: 3rem;
+    display: flex;
+    justify-content: space-evenly;
+
+    button {font-size: 1vmax;}
+
+    &-main {
+      width: 10rem;
+      margin-bottom: 1rem;
+      margin-left: 1rem;
+      height: 3vmax;
+    }
+  }
+}

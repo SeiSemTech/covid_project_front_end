@@ -8,6 +8,8 @@ import {MatPaginator} from "@angular/material/paginator";
 import {UserService} from "../../../shared/services/user.service";
 import {ProfileService} from "../../../shared/services/profile.service";
 import {User} from "../../../core/models/User";
+import {ValidationComponent} from "../../../shared/modules/validation/validation.component";
+import {MessageComponent} from "../../../shared/modules/message/message.component";
 
 @Component({
   selector: 'app-user-admin',
@@ -48,10 +50,23 @@ export class UserAdminComponent implements OnInit, AfterViewInit {
 
   updateUser() {
     this.user.profile.push(this.profile.value);
-    console.log(this.user)
-    // this.userService.updateUser(user);
+    this.userService.updateUser(this.user);
   }
 
+  deleteUser(id: string): void {
+    const dialogRef = this.dialog.open(ValidationComponent, {
+      data: "¿Está seguro que desea eliminar el usuario?, una vez eliminado del sistema no podrá recuperarlo"
+    });
+    dialogRef.afterClosed().subscribe((data: boolean) => {
+      if (data) {
+        this.userService.deleteUser(id).subscribe(response => {
+          this.dialog.open(MessageComponent, {
+            data: {message: response.mensaje, icon: "check", button: "¡Listo!"}
+          });
+        })
+      }
+    });
+  }
   openDialog(user: User = new User()): void {
     const dialogRef = this.dialog.open(UserFormComponent, {
       data: user
