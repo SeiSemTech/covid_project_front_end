@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Laboratory} from "../../../core/models/laboratory";
 import {LaboratoryService} from "../../../shared/services/laboratory.service";
@@ -6,19 +6,24 @@ import {MatTableDataSource} from "@angular/material/table";
 import {Lot} from "../../../core/models/Lot";
 import {User} from "../../../core/models/User";
 import {VaccineLotsService} from "../../../shared/services/vaccine-lots.service";
+import {MatPaginator} from "@angular/material/paginator";
+import {MatSort} from "@angular/material/sort";
 
 @Component({
   selector: 'app-vaccine-lots',
   templateUrl: './vaccine-lots.component.html',
   styleUrls: ['./vaccine-lots.component.scss']
 })
-export class VaccineLotsComponent implements OnInit {
+export class VaccineLotsComponent implements OnInit, AfterViewInit {
 
   displayedColumns: string[] = ['id', 'cantidadDosis', 'idLaboratorio', 'fechaAdquisicion', 'action'];
   public form: FormGroup;
   dataSource = new MatTableDataSource<Lot>();
   lot = new Lot();
   laboratories = [new Laboratory()];
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor(private formBuilder: FormBuilder, private laboratoryService: LaboratoryService, private vaccineLotsService: VaccineLotsService) { }
 
@@ -41,8 +46,16 @@ export class VaccineLotsComponent implements OnInit {
 
   }
 
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+
   applyFilter(event: Event) {
     this.dataSource.filter = (event.target as HTMLInputElement).value.trim().toLowerCase();
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 
 }

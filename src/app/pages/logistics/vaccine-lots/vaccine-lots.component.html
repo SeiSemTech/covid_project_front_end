@@ -30,8 +30,6 @@
           <input matInput type="number" formControlName="fechaAdquisicion" required/>
         </mat-form-field>
       </div>
-
-
     </app-info-panel>
     <div class="announce">
       <div class="announce-image"></div>
@@ -41,7 +39,6 @@
       </div>
     </div>
   </div>
-
   <div class="vaccine_lots">
     <app-title-bar title="Lotes en sistema" icon="vaccine_lots" color="yellow"></app-title-bar>
 
@@ -52,7 +49,6 @@
           <input matInput (keyup)="applyFilter($event)" placeholder="Filtro" #input>
           <mat-icon matSuffix color="primary">filter_alt</mat-icon>
         </mat-form-field>
-
       </div>
 
       <table mat-table [dataSource]="dataSource" class="vaccine_lots_table_content">
@@ -74,14 +70,12 @@
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
         <tr class="mat-row" *matNoDataRow>
         <tr class="mat-row" *matNoDataRow>
           <td class="mat-cell" colspan="5">No data matching the filter "{{input.value}}"</td>
         </tr>
       </table>
-      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-
+      <mat-paginator [pageSizeOptions]="[1, 5, 10]" showFirstLastButtons></mat-paginator>
     </div>
   </div>
 </div>
