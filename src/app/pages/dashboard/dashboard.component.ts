@@ -24,4 +24,10 @@ export class DashboardComponent implements OnInit {
     this.router.navigate([url]);
   }
 
+  profile(profile: string): boolean {
+    const rol = JSON.parse(localStorage.getItem('roles'));
+    console.log(rol.find(a => a === profile));
+    return true;
+  }
+
 }

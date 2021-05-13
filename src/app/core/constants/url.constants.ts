@@ -1,7 +1,7 @@
 export const URL = {
   LOGIN: `/login`,
   USER: `/user`,
-  PROFILE: `/profile`,
+  ROL: `/rol`,
   VACCINE: `/vaccine-lots`,
   LABORATORY: `/laboratory`,
 };

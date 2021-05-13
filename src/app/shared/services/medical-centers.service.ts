@@ -4,8 +4,6 @@ import {URL} from "../../core/constants/url.constants";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
-import {Lot} from "../../core/models/Lot";
-import {Laboratory} from "../../core/models/laboratory";
 import {Send} from "../../core/models/Send";
 
 @Injectable({

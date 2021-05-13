@@ -2,7 +2,7 @@ import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import {UserFormComponent} from './user-form/user-form.component';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
-import {Profile} from "../../../core/models/Profile";
+import {Rol} from "../../../core/models/Rol";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 import {UserService} from "../../../shared/services/user.service";
@@ -24,15 +24,15 @@ export class UserAdminComponent implements OnInit, AfterViewInit {
   form: FormGroup;
   dataSource = new MatTableDataSource<User>();
   user = new User();
-  profile = new FormControl();
-  profiles = [new Profile()];
+  rol = new FormControl();
+  roles = [new Rol()];
 
   constructor(public dialog: MatDialog, private userService: UserService, private profileService: ProfileService, private formBuilder: FormBuilder) {
-    this.form = this.formBuilder.group({profile: this.profile});
+    this.form = this.formBuilder.group({profile: this.rol});
   }
 
   ngOnInit(): void {
-    this.profileService.getAllProfiles().subscribe(data => this.profiles = data.response);
+    this.profileService.getAllProfiles().subscribe(data => this.roles = data.response);
     this.userService.getAllUsers().subscribe(data => {
       const userTable: User[] = data.response.filter(user => user.state === true);
       this.dataSource = new MatTableDataSource<User>(userTable)
@@ -48,9 +48,20 @@ export class UserAdminComponent implements OnInit, AfterViewInit {
     this.user = user;
   }
 
-  updateUser() {
-    this.user.profile.push(this.profile.value);
-    this.userService.updateUser(this.user);
+  updateUserProfiles() {
+    if(!this.user.roles.find(rol => rol.id === this.rol.value.id)) {
+      this.user.roles.push(this.rol.value);
+      this.userService.updateUser(this.user);
+    } else {
+      this.dialog.open(MessageComponent, {
+        data: {message: 'Este usuario ya cuenta con el perfil seleccionado', icon: "failure-error", button: "¡Oops!"}
+      });
+    }
+  }
+
+  deleteUserProfile(id: number) {
+    this.user.roles = this.user.roles.filter(rol => rol.id !== id);
+    this.userService.updateUser(this.user)
   }
 
   deleteUser(id: string): void {

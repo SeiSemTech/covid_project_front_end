@@ -32,6 +32,14 @@ tr.example-element-row:not(.example-expanded-row):active {
       align-items: center;
       padding: 0 1.5rem
     }
+    &-image {
+      background-image: url('/assets/svg/select_user.svg');
+      width: 12rem;
+      height: 12rem;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+    }
   }
 }
 .users {

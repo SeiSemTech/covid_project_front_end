@@ -1,12 +1,12 @@
 import {Login} from "./Login";
-import {Profile} from "./Profile";
+import {Rol} from "./Rol";
 
 export class User extends Login{
+  id: string;
   name: string;
   lastname: string;
   document: number;
-  id: string;
   creationDate: number;
   state: boolean;
-  profile?: Profile[];
+  roles?: Rol[];
 }

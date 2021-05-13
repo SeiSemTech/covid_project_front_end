@@ -3,24 +3,25 @@ import {environment} from "../../../environments/environment";
 import {URL} from "../../core/constants/url.constants";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {Profile} from "../../core/models/Profile";
+import {Rol} from "../../core/models/Rol";
 import {map} from "rxjs/operators";
-import {Laboratory} from "../../core/models/laboratory";
+import {Response} from "../../core/dto/response";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProfileService {
 
-  private readonly urlProfile: string = `${environment.apiUrl + URL.PROFILE}`;
+  private readonly urlProfile: string = `${environment.apiUrl + URL.ROL}`;
 
   constructor(private http: HttpClient) { }
 
-  public getAllProfiles():  Observable<{ response: Profile[] }> {
+  public getAllProfiles():  Observable<Response<Rol[]>> {
     //DATOS QUEMADOS
-    const profiles: Profile[] = [{id: 1, name: "Admin sistema"}, {id: 2, name: "Logística"}, {id: 3, name: "Personal salud"}];
-    return new Observable<{response: Profile[]}>(observer => observer.next({response: profiles}));
+    const roles: Rol[] = [{id: 1, name: "Admin sistema", detalle: ""}, {id: 2, name: "Logística", detalle: ""}, {id: 3, name: "Personal salud", detalle: ""}];
+    const response: Response<Rol[]> = {error: 0, response: roles, mensaje: "" };
+    return new Observable<Response<Rol[]>>(observer => observer.next(response));
     //URL ORIGINAL
-    // return this.http.get(this.urlProfile+'/getPerfiles').pipe(map((profile: Profile[]) => profile));
+    return this.http.get(this.urlProfile+'/getPerfiles').pipe(map((r: Response<Rol[]>) => r));
   }
 }

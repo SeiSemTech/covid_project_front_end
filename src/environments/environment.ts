@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://covidbosqueapp.azurewebsites.net'
+  apiUrl: 'https://covid-backend-pruebas.herokuapp.com'
 };
 
 /*
