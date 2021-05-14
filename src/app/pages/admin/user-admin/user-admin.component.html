@@ -1,6 +1,6 @@
 <div class="container">
   <div class="profile">
-    <app-info-panel title="Perfiles del usuario" icon="profile" (submit)="updateUserProfiles()" [formGroup]="form">
+    <app-info-panel title="Perfiles del usuario" icon="profile" (submit)="updateUserProfiles()" [formGroup]="user.id ? form: undefined">
       <ng-container *ngIf="user.id">
         <div>Agregar otro perfil al usuario
           <mat-icon>plus</mat-icon>

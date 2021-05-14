@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://covid-backend-pruebas.herokuapp.com'
+  apiUrl: 'https://covid-backend-pruebas.herokuapp.com',
+  assets: '/assets/'
 };
 
 /*
