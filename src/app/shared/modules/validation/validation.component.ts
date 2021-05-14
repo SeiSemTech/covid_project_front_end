@@ -10,5 +10,5 @@ export class ValidationComponent {
 
   constructor(
     public dialogRef: MatDialogRef<ValidationComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: string) { }
+    @Inject(MAT_DIALOG_DATA) public data: boolean) { }
 }

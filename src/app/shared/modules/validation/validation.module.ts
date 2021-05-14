@@ -6,8 +6,11 @@ import {MatDialogModule} from "@angular/material/dialog";
 
 @NgModule({
   declarations: [ValidationComponent],
-  imports: [CommonModule, MatButtonModule,
-    MatDialogModule,],
+  imports: [
+    CommonModule,
+    MatDialogModule,
+    MatButtonModule,
+  ],
   exports: [ValidationComponent]
 })
 export class ValidationModule {

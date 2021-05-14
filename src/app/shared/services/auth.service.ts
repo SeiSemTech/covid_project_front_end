@@ -14,6 +14,6 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   public login(login: Login) {
-    return this.http.post(this.urlLogin, login);
+    return this.http.post(this.urlLogin, login, {headers:{skip:"true"}});
   }
 }

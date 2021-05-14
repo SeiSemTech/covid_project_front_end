@@ -1,10 +1,12 @@
 <div>
-  <h1>Aviso</h1>
+  <h1 class="validation-title">Aviso</h1>
   {{data}}
   <div class="validation_buttons">
-    <button class="validation_buttons-main" mat-raised-button color="primary" (click)="dialogRef.close(true)">Aceptar
+    <button class="validation_buttons-main" mat-button color="primary" (click)="dialogRef.close(true)">
+      Aceptar
     </button>
-    <button class="validation_buttons-main" mat-raised-button color="warn" (click)="dialogRef.close(false)">Cancelar
+    <button class="validation_buttons-main" mat-button color="warn" (click)="dialogRef.close(false)">
+      Cancelar
     </button>
   </div>
 </div>

@@ -9,6 +9,12 @@ tr.example-element-row:not(.example-expanded-row):active {
   background: #efefef;
 }
 
+.table_column-selected {
+  transition: background .2s;
+  background: #efefef;
+}
+
+
 .container {
   display: flex;
   width: 100%;

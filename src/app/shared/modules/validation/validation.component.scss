@@ -1,4 +1,10 @@
+@import "../../../../assets/scss/index";
+
 .validation {
+  &-title {
+    color: $PRIMARY;
+    font-weight: bold;
+  }
   &_buttons {
     width: 100%;
     margin-top: 3rem;

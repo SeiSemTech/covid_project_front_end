@@ -14,6 +14,10 @@ import {TitleBarModule} from "../../shared/modules/title-bar/title-bar.module";
 import {MatTableModule} from "@angular/material/table";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatButtonModule} from "@angular/material/button";
+import {HTTP_INTERCEPTORS} from "@angular/common/http";
+import {InterceptorInterceptor} from "../../shared/interceptor/interceptor.interceptor";
+import {MatDatepickerModule} from '@angular/material/datepicker'
+import {MatNativeDateModule} from "@angular/material/core";
 
 @NgModule({
   declarations: [
@@ -33,7 +37,16 @@ import {MatButtonModule} from "@angular/material/button";
     TitleBarModule,
     MatTableModule,
     MatPaginatorModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptorInterceptor,
+      multi: true
+    }
   ]
 })
 export class LogisticsModule { }

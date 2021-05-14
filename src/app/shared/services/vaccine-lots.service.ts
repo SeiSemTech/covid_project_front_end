@@ -21,18 +21,21 @@ export class VaccineLotsService {
   }
 
   public getAllVaccineLots(): Observable<{response: Lot[]}> {
-    //DATOS QUEMADOS
+    // DATOS QUEMADOS
     const laboratories: Lot[] = [
-      {id: 1, idLaboratorio: 0, cantidadDosis: 400, costo: 2000, fechaAdquisicion: 122, numeroLote: 1},
-      {id: 2, idLaboratorio: 0, cantidadDosis: 400, costo: 2000, fechaAdquisicion: 122, numeroLote: 1},
-      {id: 3, idLaboratorio: 0, cantidadDosis: 400, costo: 2000, fechaAdquisicion: 122, numeroLote: 1}]
+      {id: 1, idLaboratorio: {id: 1, nombre: "PFeizer"}, estado:{ id: 1, estado: "Registrado"}, cantidadDosis: 400, costo: 2000, fechaAdquisicion: Date.now(), numeroLote: 1},
+      {id: 2, idLaboratorio: {id: 1, nombre: "PFeizer"}, estado:{ id: 1, estado: "Registrado"}, cantidadDosis: 400, costo: 2000, fechaAdquisicion: Date.now(), numeroLote: 1},
+      {id: 3, idLaboratorio: {id: 1, nombre: "PFeizer"}, estado:{ id: 2, estado: "Enviado"}, cantidadDosis: 400, costo: 2000, fechaAdquisicion: Date.now(), numeroLote: 1},
+      {id: 4, idLaboratorio: {id: 1, nombre: "PFeizer"}, estado:{ id: 3, estado: "Entregado"}, cantidadDosis: 400, costo: 2000, fechaAdquisicion: Date.now(), numeroLote: 1},
+      {id: 5, idLaboratorio: {id: 2, nombre: "AstraZeneca"}, estado:{ id: 1, estado: "Registrado"}, cantidadDosis: 400, costo: 2000, fechaAdquisicion: Date.now(), numeroLote: 1},
+      {id: 6, idLaboratorio: {id: 2, nombre: "AstraZeneca"}, estado:{ id: 3, estado: "Entregado"},  cantidadDosis: 400, costo: 2000, fechaAdquisicion: Date.now(), numeroLote: 1}]
     return new Observable<{response: Lot[]}>(observer => observer.next({response: laboratories}));
-    //URL ORIGINAL
+    // URL ORIGINAL
     return this.http.get(this.urlVaccine+'/getLotes').pipe(map((lot: {response: Lot[]}) => lot));
   }
 
   public updateVaccineLot(lot: Lot): Observable<{ mensaje, data }> {
-    return this.http.put(this.urlVaccine+'/updateLote', lot).pipe(map((data:{ mensaje, data }) => data));
+    return this.http.post(this.urlVaccine+'/updateLote', lot).pipe(map((data:{ mensaje, data }) => data));
   }
 
   public deleteVaccineLot(id: string): Observable<{ mensaje, data }> {

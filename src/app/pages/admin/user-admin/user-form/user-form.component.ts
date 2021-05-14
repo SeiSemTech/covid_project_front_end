@@ -43,12 +43,16 @@ export class UserFormComponent implements OnInit {
   }
 
   createUser() {
-    this.data = this.form.value;
-    this.data.creationDate = Date.now();
-    this.data.state = true;
     if (this.data.id) {
+      this.data.name = this.form.value.name;
+      this.data.lastname = this.form.value.lastname;
+      this.data.document = this.form.value.document;
+      this.data.username = this.form.value.username;
       this.userService.updateUser(this.data).subscribe(response  => this.msmResponse(response));
     } else {
+      this.data = this.form.value;
+      this.data.creationDate = Date.now();
+      this.data.state = true;
       this.userService.createUser(this.data).subscribe(response => this.msmResponse(response));
     }
   }

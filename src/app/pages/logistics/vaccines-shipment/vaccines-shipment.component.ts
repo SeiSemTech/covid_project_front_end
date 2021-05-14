@@ -35,7 +35,7 @@ export class VaccinesShipmentComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.laboratoryService.getAllLaboratories().subscribe(data => this.laboratories = data.response);
     this.vaccineLotsService.getAllVaccineLots().subscribe(data => {
-      this.asd = data.response.filter(vaccinessl => vaccinessl.idLaboratorio = 1).map(vaccine =>vaccine.cantidadDosis).reduce((a, b) => a + b, 0);
+      this.asd = data.response.filter(vaccinessl => vaccinessl.idLaboratorio.id = 1).map(vaccine =>vaccine.cantidadDosis).reduce((a, b) => a + b, 0);
       this.dataSource = new MatTableDataSource<Lot>(data.response);
     });
 

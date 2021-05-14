@@ -17,6 +17,6 @@ export class MedicalCentersService {
 
   public getAllMedicalCenters(): Observable<Send[]> {
 
-    return this.http.get('https://www.datos.gov.co/resource/u82n-j82m.json').pipe(map((send: Send[]) => send));
+    return this.http.get('https://www.datos.gov.co/resource/u82n-j82m.json', {headers:{skip:"true"}}).pipe(map((send: Send[]) => send));
   }
 }

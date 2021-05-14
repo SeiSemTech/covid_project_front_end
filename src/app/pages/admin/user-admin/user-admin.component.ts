@@ -10,6 +10,7 @@ import {ProfileService} from "../../../shared/services/profile.service";
 import {User} from "../../../core/models/User";
 import {ValidationComponent} from "../../../shared/modules/validation/validation.component";
 import {MessageComponent} from "../../../shared/modules/message/message.component";
+import {MatSort} from "@angular/material/sort";
 
 @Component({
   selector: 'app-user-admin',
@@ -19,6 +20,7 @@ import {MessageComponent} from "../../../shared/modules/message/message.componen
 export class UserAdminComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   displayedColumns: string[] = ['name', 'lastname', 'username', 'document', 'creationDate', 'action'];
   form: FormGroup;
@@ -37,11 +39,11 @@ export class UserAdminComponent implements OnInit, AfterViewInit {
       const userTable: User[] = data.response.filter(user => user.state === true);
       this.dataSource = new MatTableDataSource<User>(userTable)
     });
-
   }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   getSelectedUser(user: User) {
@@ -51,7 +53,7 @@ export class UserAdminComponent implements OnInit, AfterViewInit {
   updateUserProfiles() {
     if(!this.user.roles.find(rol => rol.id === this.rol.value.id)) {
       this.user.roles.push(this.rol.value);
-      this.userService.updateUser(this.user);
+      this.userService.updateUser(this.user).subscribe();
     } else {
       this.dialog.open(MessageComponent, {
         data: {message: 'Este usuario ya cuenta con el perfil seleccionado', icon: "failure-error", button: "¡Oops!"}
@@ -61,7 +63,7 @@ export class UserAdminComponent implements OnInit, AfterViewInit {
 
   deleteUserProfile(id: number) {
     this.user.roles = this.user.roles.filter(rol => rol.id !== id);
-    this.userService.updateUser(this.user)
+    this.userService.updateUser(this.user);
   }
 
   deleteUser(id: string): void {
@@ -78,10 +80,10 @@ export class UserAdminComponent implements OnInit, AfterViewInit {
       }
     });
   }
+
   openDialog(user: User = new User()): void {
-    const dialogRef = this.dialog.open(UserFormComponent, {
-      data: user
-    });
+    console.log("asda")
+    const dialogRef = this.dialog.open(UserFormComponent, {data: user});
     dialogRef.afterClosed().subscribe((data: User) => {
       if (data) {
         console.log(data);
@@ -92,6 +94,9 @@ export class UserAdminComponent implements OnInit, AfterViewInit {
 
   applyFilter(event: Event) {
     this.dataSource.filter = (event.target as HTMLInputElement).value.trim().toLowerCase();
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 
 }

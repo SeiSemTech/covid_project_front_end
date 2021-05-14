@@ -18,9 +18,9 @@ export class ProfileService {
 
   public getAllProfiles():  Observable<Response<Rol[]>> {
     //DATOS QUEMADOS
-    const roles: Rol[] = [{id: 1, name: "Admin sistema", detalle: ""}, {id: 2, name: "Logística", detalle: ""}, {id: 3, name: "Personal salud", detalle: ""}];
-    const response: Response<Rol[]> = {error: 0, response: roles, mensaje: "" };
-    return new Observable<Response<Rol[]>>(observer => observer.next(response));
+    // const roles: Rol[] = [{id: 1, name: "Admin sistema", detalle: ""}, {id: 2, name: "Logística", detalle: ""}, {id: 3, name: "Personal salud", detalle: ""}];
+    // const response: Response<Rol[]> = {error: 0, response: roles, mensaje: "" };
+    // return new Observable<Response<Rol[]>>(observer => observer.next(response));
     //URL ORIGINAL
     return this.http.get(this.urlProfile+'/getPerfiles').pipe(map((r: Response<Rol[]>) => r));
   }

@@ -1,6 +1,6 @@
 <div class="container">
   <div class="profile">
-    <app-info-panel title="Perfiles del usuario" icon="profile" (submit)="updateUserProfiles()" [formGroup]="user.id ? form : undefined">
+    <app-info-panel title="Perfiles del usuario" icon="profile" (submit)="updateUserProfiles()" [formGroup]="form">
       <ng-container *ngIf="user.id">
         <div>Agregar otro perfil al usuario
           <mat-icon>plus</mat-icon>
@@ -8,7 +8,7 @@
         <mat-form-field appearance="legacy">
           <mat-label>Perfil</mat-label>
           <mat-select [formControl]="rol" required>
-            <mat-option *ngFor="let rol of roles" [value]="rol"> {{rol.name}}</mat-option>
+            <mat-option *ngFor="let rol of roles" [value]="rol"> {{rol.detalle}}</mat-option>
           </mat-select>
         </mat-form-field>
       </ng-container>
@@ -21,7 +21,7 @@
     </app-info-panel>
     <div class="profile_user" *ngIf="user.roles">
       <div class="profile_user-current" *ngFor="let rol of user.roles">
-        <div>{{rol.name}}</div>
+        <div>{{rol.detalle}}</div>
         <button mat-icon-button color="warn" (click)="deleteUserProfile(rol.id)">
           <mat-icon>delete</mat-icon>
         </button>
@@ -50,7 +50,10 @@
         <mat-text-column name="lastname" headerText="Apellido"></mat-text-column>
         <mat-text-column name="username" headerText="Usuario"></mat-text-column>
         <mat-text-column name="document" headerText="Documento"></mat-text-column>
-        <mat-text-column name="creationDate" headerText="Fecha ingreso"></mat-text-column>
+        <ng-container matColumnDef="creationDate">
+          <th mat-header-cell *matHeaderCellDef>Fecha ingreso</th>
+          <td mat-cell *matCellDef="let user">{{user.creationDate | date: 'mediumDate'}}</td>
+        </ng-container>
         <ng-container matColumnDef="action">
           <th mat-header-cell *matHeaderCellDef></th>
           <td mat-cell *matCellDef="let action" class="users_table_content-actions">
@@ -65,13 +68,13 @@
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="example-element-row"
-            (click)="getSelectedUser(row)"></tr>
+            (click)="getSelectedUser(row)" [ngClass]="{ 'table_column-selected': row.id === user.id }"></tr>
 
         <tr class="mat-row" *matNoDataRow>
           <td class="mat-cell" colspan="6">No data matching the filter "{{input.value}}"</td>
         </tr>
       </table>
-      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+      <mat-paginator [pageSizeOptions]="[2, 10, 20]" showFirstLastButtons></mat-paginator>
     </div>
   </div>
 </div>
