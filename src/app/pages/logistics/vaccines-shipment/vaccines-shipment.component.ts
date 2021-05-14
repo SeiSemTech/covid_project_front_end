@@ -18,8 +18,7 @@ import {MatSort} from "@angular/material/sort";
 })
 export class VaccinesShipmentComponent implements OnInit, AfterViewInit {
 
-  displayedColumns2: string[] = ['id', 'depa_nombre', 'muni_nombre', 'sede_nombre', 'direccion', 'telefono', 'action'];
-  public form2: FormGroup;
+  displayedColumns2: string[] = ['id', 'depa_nombre', 'muni_nombre', 'sede_nombre', 'direccion', 'telefono'];
   public form: FormGroup;
   dataSource = new MatTableDataSource<Lot>();
   dataSource2 = new MatTableDataSource<Send>();
@@ -45,21 +44,7 @@ export class VaccinesShipmentComponent implements OnInit, AfterViewInit {
     });
 
     this.form = this.formBuilder.group({
-      id: ['', [Validators.required]],
-      numeroLote: ['', [Validators.required]],
-      cantidadDosis: ['', [Validators.required]],
-      costo: ['', [Validators.required]],
-      fechaAdquisicion: ['', [Validators.required]],
       idLaboratorio: ['', [Validators.required]],
-
-    });
-    this.form2 = this.formBuilder.group({
-      id: ['', [Validators.required]],
-      depa_nombre: ['', [Validators.required]],
-      muni_nombre: ['', [Validators.required]],
-      sede_nombre: ['', [Validators.required]],
-      direccion: ['', [Validators.required]],
-      telefono: ['', [Validators.required]],
     });
   }
   funcionPrueba(){
