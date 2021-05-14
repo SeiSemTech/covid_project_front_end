@@ -1,6 +1,6 @@
 <div class="container">
   <div style="width: 30%">
-    <app-info-panel title="Detalle de envios" icon="delivery" (submit)="createBatch()" [formGroup]="form">
+    <app-info-panel title="Detalle de envios" icon="list_logo" (submit)="createBatch()" [formGroup]="form">
       <div style="display: flex; justify-content: space-around; flex-wrap: wrap">
         <mat-form-field appearance="legacy" style="width: 45%;">
           <mat-label>Tipo de vacuna</mat-label>
@@ -18,16 +18,17 @@
         </div>
       </div>
     </app-info-panel>
-    <div class="announce">
-      <div class="announce-image"></div>
-      <div class="announce-text">
-        Recuerde que los envios <b>se realizan en el modulo de envios</b>, por lo cual se sugiere revisar la
-        información antes de realizar el envió de vacunas.
-      </div>
-    </div>
+    <div style="margin-top: 1rem; color: #777777"><app-info-panel title="Ultimo envio" icon="send_logo">
+      <b>Fecha:</b>12/05/2021<br>
+      <b>Estado:</b>enviado<br>
+      <b>Departamento:</b>Antioquia<br>
+      <b>Municipio:</b>Medellin<br>
+      <b>Sede:</b>CENTRO DE SALUD LLANADITAS<br>
+      <b>Direccion:</b>KR 25 # 75C 06 IN 143<br>
+    </app-info-panel></div>
   </div>
   <div class="vaccine_lots">
-    <app-title-bar title="Centros de vacunación" icon="vaccine_lots" color="yellow"></app-title-bar>
+    <app-title-bar title="Centros de vacunación" icon="map_logo" color="yellow"></app-title-bar>
 
     <div class="vaccine_lots_table">
       <div class="vaccine_lots_table_top">

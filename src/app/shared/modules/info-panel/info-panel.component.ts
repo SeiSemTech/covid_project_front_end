@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormGroup} from "@angular/forms";
+import {environment} from "../../../../environments/environment";
 
 @Component({
   selector: 'app-info-panel',
@@ -18,7 +19,7 @@ export class InfoPanelComponent implements OnInit {
   }
 
   urlResolver(icon: string) {
-    return "url('/assets/svg/" + icon + ".svg')";
+    return "url('" + environment.assets + "svg/" + icon + ".svg')";
   }
 
 }

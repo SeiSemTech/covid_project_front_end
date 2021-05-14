@@ -1,4 +1,5 @@
 import {Component, Input} from '@angular/core';
+import {environment} from "../../../../environments/environment";
 
 @Component({
   selector: 'app-title-bar',
@@ -14,7 +15,7 @@ export class TitleBarComponent {
   colors = ColorEnum;
 
   urlResolver(icon: string) {
-    return "url('/assets/svg/" + icon + ".svg')";
+    return "url('" + environment.assets + "svg/" + icon + ".svg')";
   }
 
 }
