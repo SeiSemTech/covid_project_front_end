@@ -16,11 +16,18 @@ export class DashboardComponent implements OnInit {
   }
 
   closeSession() {
+    localStorage.clear();
     this.router.navigate([PATHS.AUTHENTICATION.PRINCIPAL]);
   }
 
   goTo(url: string) {
     this.router.navigate([url]);
+  }
+
+  profile(profile: string): boolean {
+    const rol = JSON.parse(localStorage.getItem('roles'));
+    console.log(rol.find(a => a === profile));
+    return true;
   }
 
 }

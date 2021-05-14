@@ -1,0 +1,72 @@
+.container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+tr.example-element-row { cursor: pointer; transition: background .5s}
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+.table_column-selected {
+  transition: background .2s;
+  background: #efefef;
+}
+
+.vaccine_lots {
+  width: 65%;
+
+  &_table {
+    border: 2px solid #D5D5D5;
+    background-color: white;
+
+    &_top {
+      border-bottom: 2px solid #D5D5D5;
+      background-color: white;
+      display: flex;
+      align-items: center;
+      padding: .5rem 1rem;
+      justify-content: space-between;
+
+      &-filter { width: 30% }
+    }
+
+    &_content {
+      width: 100%;
+
+      &-actions {
+        text-align: end;
+        width: 5rem;
+      }
+    }
+  }
+}
+
+.announce {
+  border: 2px solid #D5D5D5;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+  justify-content: space-between;
+  padding: 1.5rem 1rem;
+
+  &-image{
+    background-image: url('/assets/svg/message_alert.svg');
+    width: 3rem;
+    height: 3rem;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+  }
+  &-text {
+    width: 85%;
+    font-size: 1vmax;
+    color: #777777;
+  }
+}

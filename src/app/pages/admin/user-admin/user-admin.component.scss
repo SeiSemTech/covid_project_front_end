@@ -1,112 +1,78 @@
 @import "../../../../assets/scss/index";
 
-.admin {
+tr.example-element-row { cursor: pointer; transition: background .5s}
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+.table_column-selected {
+  transition: background .2s;
+  background: #efefef;
+}
+
+
+.container {
   display: flex;
-  flex-direction: column;
-  width: 100vw;
-  height: 100vh;
-  background-color: $GRAY-100;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
+  width: 100%;
+  justify-content: space-between;
+}
 
-  &_square {
-    position: relative;
-    display: flex;
-    width: 70vmax;
-    height: 40vmax;
-    background-color: $WHITE;
-    border-radius: 1rem;
-    margin-right: 10%;
-    -webkit-box-shadow: 5px 0 20px 0 $OPACITY;
-    -moz-box-shadow: 5px 0 20px 0 $OPACITY;
-    box-shadow: 5px 0 20px 0 $OPACITY;
+.profile {
+  width: 25%;
 
-    // ---------------------------------------- Parte izquierda del recuadro ---------------------------------------- //
-
-    &_l {
-      background-color: $PRIMARY;
-      height: 100%;
-      width: 30%;
-      border-radius: 1rem 0 0 1rem;
+  &_user {
+    margin-top: 1rem;
+    border-top: 2px solid #D5D5D5;
+    &-current {
+      border-style: solid;
+      border-color: #D5D5D5;
+      border-width: 0 2px 2px 2px;
+      background-color: white;
       display: flex;
-      flex-direction: column;
-      justify-content: space-evenly;
+      justify-content: space-between;
+      height: 2.5rem;
       align-items: center;
-
-      &-title {
-        text-align: center;
-        padding: 0 10%;
-        color: $WHITE;
-        font-size: 2.5vmax;
-        font-weight: initial;
-        line-height: normal;
-      }
-      &-logo {
-        background-image: url("/assets/svg/bosque_logo.svg");
-        width: 8vmax;
-        height: 8vmax;
-        background-repeat: no-repeat;
-        background-size: contain;
-        background-position: center;
-      }
+      padding: 0 1.5rem
     }
-
-    // ----------------------------------------- Parte derecha del recuadro ----------------------------------------- //
-
-    &_r {
-      height: 100%;
-      width: 70%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-
-      &-title {
-        color: $PRIMARY;
-        font-weight: bold;
-        font-size: 2.55vmax;
-        margin: 5rem 0;
-      }
-
-      &_form {
-        display: flex;
-        flex-direction: column;
-        width: 50%;
-        font-size: 1vmax;
-        &_b {
-          margin-top: 3rem;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-
-          button {font-size: 1vmax;}
-
-          &-principal {
-            width: 10rem;
-            margin-bottom: 1rem;
-            height: 2.5vmax;
-          }
-        }
-      }
-    }
-
-
-    // ------------------------------------------ Estilos de imagen lottie ------------------------------------------ //
-    &-lottie {
-      position: absolute;
-      bottom: -12%;
-      right: -25%;
+    &-image {
+      background-image: url('/assets/svg/select_user.svg');
+      width: 12rem;
+      height: 12rem;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
     }
   }
 }
+.users {
+  width: 70%;
 
-// ----------------------------------------------- ANGULAR SETTINGS ------------------------------------------------ //
-::ng-deep.mat-checkbox-frame {
-  border-color: $PRIMARY;
-}
+  &_table {
+    border: 2px solid #D5D5D5;
+    background-color: white;
 
-::ng-deep.mat-form-field-outline:hover, ::ng-deep.mat-form-field-flex:hover {
-  .mat-form-field-outline-start {border-color: $PRIMARY}
-  .mat-form-field-outline-gap {border-color: $PRIMARY}
-  .mat-form-field-outline-end {border-color: $PRIMARY}
+    &_top {
+      border-bottom: 2px solid #D5D5D5;
+      background-color: white;
+      display: flex;
+      align-items: center;
+      padding: .5rem 1rem;
+      justify-content: space-between;
+
+      &-filter { width: 30% }
+    }
+
+    &_content {
+      width: 100%;
+
+      &-actions {
+        text-align: end;
+        width: 5rem;
+      }
+    }
+  }
 }

@@ -1,6 +1,6 @@
 <div class="form">
   <div class="form-product">
-    <div class="form-product-title">{{(data.is_new ? 'Crear ' : 'Editar ') + 'usuario' }}</div>
+    <div class="form-product-title">{{(data.id ? 'Editar ': 'Crear ') + 'usuario' }}</div>
     <mat-icon>add_circle</mat-icon>
   </div>
   <div class="register">
@@ -24,10 +24,10 @@
 
           <mat-form-field appearance="legacy">
             <mat-label>Usuario</mat-label>
-            <input matInput type="user" placeholder="Usuario" formControlName="user" required/>
+            <input matInput type="user" placeholder="Usuario" formControlName="username" required/>
           </mat-form-field>
 
-          <mat-form-field appearance="legacy">
+          <mat-form-field appearance="legacy" *ngIf="!data.id">
             <mat-label>Contraseña</mat-label>
             <input matInput placeholder="Ingrese su contraseña" [type]="hide ? 'password' : 'text'" formControlName="password" required/>
             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" type="button">
@@ -35,7 +35,7 @@
             </button>
           </mat-form-field>
 
-          <mat-form-field appearance="legacy">
+          <mat-form-field appearance="legacy" *ngIf="!data.id">
             <mat-label>Confirmar contraseña</mat-label>
             <input matInput placeholder="Ingrese su contraseña" [type]="hide ? 'password' : 'text'" formControlName="confirm" required/>
             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" type="button">

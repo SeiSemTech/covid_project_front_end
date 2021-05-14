@@ -1,1 +1,69 @@
-<p>vaccines-shipment works!</p>
+<div class="container">
+  <div style="width: 30%">
+    <app-info-panel title="Detalle de envios" icon="delivery" (submit)="createBatch()" [formGroup]="form">
+      <div style="display: flex; justify-content: space-around; flex-wrap: wrap">
+        <mat-form-field appearance="legacy" style="width: 45%;">
+          <mat-label>Tipo de vacuna</mat-label>
+          <mat-select formControlName="idLaboratorio" required (selectionChange)="funcionPrueba()">
+            <mat-option *ngFor="let laboratory of laboratories"
+                        [value]="laboratory.id"> {{laboratory.nombre}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="legacy" style="width: 45%;">
+          <mat-label>Cantidad de vacunas</mat-label>
+          <input matInput type="number" formControlName="cantidadVac" required/>
+        </mat-form-field>
+        <div class="announce-text" align="center">
+          Disponibles: {{asd}}
+        </div>
+      </div>
+    </app-info-panel>
+    <div class="announce">
+      <div class="announce-image"></div>
+      <div class="announce-text">
+        Recuerde que los envios <b>se realizan en el modulo de envios</b>, por lo cual se sugiere revisar la
+        información antes de realizar el envió de vacunas.
+      </div>
+    </div>
+  </div>
+  <div class="vaccine_lots">
+    <app-title-bar title="Centros de vacunación" icon="vaccine_lots" color="yellow"></app-title-bar>
+
+    <div class="vaccine_lots_table">
+      <div class="vaccine_lots_table_top">
+        <mat-form-field class="vaccine_lots_table_top-filter">
+          <mat-label>Filter</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Filtro" #input>
+          <mat-icon matSuffix color="primary">filter_alt</mat-icon>
+        </mat-form-field>
+      </div>
+
+      <table mat-table [dataSource]="dataSource2" class="vaccine_lots_table_content">
+        <mat-text-column name="id" headerText="Id"  ></mat-text-column>
+        <mat-text-column name="depa_nombre" headerText="Departamento"></mat-text-column>
+        <mat-text-column name="muni_nombre" headerText="Munucipio"></mat-text-column>
+        <mat-text-column name="sede_nombre" headerText="Sede"></mat-text-column>
+        <mat-text-column name="direccion" headerText="Direccion"></mat-text-column>
+        <mat-text-column name="telefono" headerText="Telefono"></mat-text-column>
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let action" class="vaccine_lots_table_content-actions">
+            <button mat-icon-button color="accent">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
+
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="5">No data matching the filter "{{input.value}}"</td>
+        </tr>
+      </table>
+      <mat-paginator [pageSizeOptions]="[10, 50, 100]" showFirstLastButtons></mat-paginator>
+    </div>
+  </div>
+</div>

@@ -1,14 +1,12 @@
  @import "../../../../assets/scss/index";
 
 .login {
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  width: 100vw;
-  height: 100vh;
-  background-color: $GRAY-100;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  height: 100vh;
 
   &_square {
     position: relative;
