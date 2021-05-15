@@ -34,7 +34,7 @@ export class VaccinesShipmentComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.laboratoryService.getAllLaboratories().subscribe(data => this.laboratories = data.response);
     this.vaccineLotsService.getAllVaccineLots().subscribe(data => {
-      this.asd = data.response.filter(vaccinessl => vaccinessl.idLaboratorio.id = 1).map(vaccine =>vaccine.cantidadDosis).reduce((a, b) => a + b, 0);
+      this.asd = data.response.filter(vaccinessl => vaccinessl.laboratorio.id = 1).map(vaccine =>vaccine.cantidad).reduce((a, b) => a + b, 0);
       this.dataSource = new MatTableDataSource<Lot>(data.response);
     });
 
@@ -48,8 +48,8 @@ export class VaccinesShipmentComponent implements OnInit, AfterViewInit {
     });
   }
   funcionPrueba(){
-   // const id = this.form.value.idLaboratorio;
-   // this.asd = this.dataSource.data.filter(vaccinessl => vaccinessl.idLaboratorio = id).map(vaccine =>vaccine.cantidadDosis).reduce((a, b) => a + b, 0);
+   // const id = this.form.value.laboratorio;
+   // this.asd = this.dataSource.data.filter(vaccinessl => vaccinessl.laboratorio = id).map(vaccine =>vaccine.cantidadDosis).reduce((a, b) => a + b, 0);
    // return id;
   }
   createBatch() {

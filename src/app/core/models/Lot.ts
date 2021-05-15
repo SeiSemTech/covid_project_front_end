@@ -4,9 +4,9 @@ import {Estado} from "./Estado";
 export class Lot {
   id: number;
   numeroLote: number;
-  cantidadDosis: number;
+  cantidad: number;
   costo: number;
-  fechaAdquisicion: number;
-  idLaboratorio: Laboratory;
+  fecha: number;
+  laboratorio: Laboratory;
   estado: Estado;
 }

@@ -18,6 +18,9 @@ import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {InterceptorInterceptor} from "../../shared/interceptor/interceptor.interceptor";
 import {MatDatepickerModule} from '@angular/material/datepicker'
 import {MatNativeDateModule} from "@angular/material/core";
+import {MessageModule} from "../../shared/modules/message/message.module";
+import {LottieModule} from "ngx-lottie";
+import {playerFactory} from "../auth/auth.module";
 
 @NgModule({
   declarations: [
@@ -27,6 +30,7 @@ import {MatNativeDateModule} from "@angular/material/core";
   imports: [
     CommonModule,
     AuthRoutingModule,
+    LottieModule.forRoot({player: playerFactory}),
     InfoPanelModule,
     MatIconModule,
     MatFormFieldModule,
@@ -40,6 +44,7 @@ import {MatNativeDateModule} from "@angular/material/core";
     MatButtonModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MessageModule
   ],
   providers: [
     {

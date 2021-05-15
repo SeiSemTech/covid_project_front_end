@@ -37,7 +37,7 @@
 
         <mat-form-field class="users_table_top-filter">
           <mat-label>Filter</mat-label>
-          <input matInput (keyup)="applyFilter($event)" placeholder="Filtro" #input>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Filtro por id" #input>
           <mat-icon matSuffix color="primary">filter_alt</mat-icon>
         </mat-form-field>
         <button mat-button (click)="openDialog()">Adicionar nuevo usuario al sistema
@@ -60,7 +60,7 @@
             <button mat-icon-button color="accent" (click)="openDialog(action)">
               <mat-icon>edit</mat-icon>
             </button>
-            <button mat-icon-button color="warn" (click)="deleteUser(action.id)">
+            <button mat-icon-button color="warn" (click)="deleteUser(action)">
               <mat-icon>delete</mat-icon>
             </button>
           </td>
@@ -74,7 +74,7 @@
           <td class="mat-cell" colspan="6">No data matching the filter "{{input.value}}"</td>
         </tr>
       </table>
-      <mat-paginator [pageSizeOptions]="[2, 10, 20]" showFirstLastButtons></mat-paginator>
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
     </div>
   </div>
 </div>

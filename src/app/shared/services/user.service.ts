@@ -29,7 +29,7 @@ export class UserService {
     return this.http.post(this.urlUser+'/updateUsuario', user).pipe(map((data:{ mensaje, data }) => data));
   }
 
-  public deleteUser(id: string): Observable<{ mensaje, data }> {
-    return this.http.post(this.urlUser+'/deleteUsuario', id).pipe(map((data:{ mensaje, data }) => data));
+  public deleteUser(user: User): Observable<{ mensaje, data }> {
+    return this.http.post(this.urlUser+'/deleteUsuario', user).pipe(map((data:{ mensaje, data }) => data));
   }
 }
