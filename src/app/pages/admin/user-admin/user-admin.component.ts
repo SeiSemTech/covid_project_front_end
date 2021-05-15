@@ -66,34 +66,33 @@ export class UserAdminComponent implements OnInit, AfterViewInit {
     this.userService.updateUser(this.user);
   }
 
-  deleteUser(id: string): void {
+  deleteUser(user: User): void {
     const dialogRef = this.dialog.open(ValidationComponent, {
-      data: "¿Está seguro que desea eliminar el usuario?, una vez eliminado del sistema no podrá recuperarlo"
+      data: "¿Está seguro que desea desactivar el usuario?, una vez desactivado no podrá visualizarlo"
     });
     dialogRef.afterClosed().subscribe((data: boolean) => {
       if (data) {
-        this.userService.deleteUser(id).subscribe(response => {
+        this.userService.deleteUser(user).subscribe(response => {
           this.dialog.open(MessageComponent, {
             data: {message: response.mensaje, icon: "check", button: "¡Listo!"}
           });
+          this.dataSource = new MatTableDataSource<User>(this.dataSource.data.filter(u => u.id !== user.id));
         })
       }
     });
   }
 
   openDialog(user: User = new User()): void {
-    console.log("asda")
     const dialogRef = this.dialog.open(UserFormComponent, {data: user});
     dialogRef.afterClosed().subscribe((data: User) => {
       if (data) {
-        console.log(data);
         this.dataSource.data.push(data);
       }
     });
   }
 
   applyFilter(event: Event) {
-    this.dataSource.filter = (event.target as HTMLInputElement).value.trim().toLowerCase();
+    this.dataSource.filter = (event.target as HTMLInputElement).value.trim();
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }

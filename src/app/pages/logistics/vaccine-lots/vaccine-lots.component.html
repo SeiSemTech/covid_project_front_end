@@ -11,28 +11,22 @@
       <div style="display: flex; justify-content: space-around; flex-wrap: wrap">
         <mat-form-field appearance="legacy" style="width: 45%;">
           <mat-label>Numero de lotes</mat-label>
-          <input matInput type="number" formControlName="numeroLote" required/>
+          <input matInput type="number" formControlName="numero" required/>
         </mat-form-field>
         <mat-form-field appearance="legacy" style="width: 45%;">
           <mat-label>Cantidad vacunas por lote</mat-label>
-          <input matInput type="number" formControlName="cantidadDosis" required/>
-        </mat-form-field>
-        <mat-form-field appearance="legacy" style="width: 95%;">
-          <mat-label>Costo</mat-label>
-          <input matInput type="number" formControlName="costo" required>
-          <span matPrefix>$&nbsp;</span>
-          <span matSuffix>.00</span>
+          <input matInput type="number" formControlName="cantidad" required/>
         </mat-form-field>
         <mat-form-field appearance="legacy" style="width: 45%;">
           <mat-label>Laboratorio</mat-label>
-          <mat-select formControlName="idLaboratorio" required>
+          <mat-select formControlName="laboratorio" required>
             <mat-option *ngFor="let laboratory of laboratories"
-                        [value]="laboratory.id"> {{laboratory.nombre}}</mat-option>
+                        [value]="laboratory"> {{laboratory.nombre}}</mat-option>
           </mat-select>
         </mat-form-field>
         <mat-form-field appearance="legacy"style="width: 45%;">
           <mat-label>Fecha</mat-label>
-          <input matInput [matDatepicker]="dp3" formControlName="fechaAdquisicion" disabled>
+          <input matInput [matDatepicker]="dp3" formControlName="fecha" disabled>
           <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
           <mat-datepicker #dp3 disabled="false"></mat-datepicker>
         </mat-form-field>
@@ -54,30 +48,30 @@
       <div class="vaccine_lots_table_top">
         <mat-form-field class="vaccine_lots_table_top-filter">
           <mat-label>Filter</mat-label>
-          <input matInput (keyup)="applyFilter($event)" placeholder="Filtro" #input>
+          <input matInput type="text" (keyup)="applyFilter($event)" placeholder="Filtro" #input>
           <mat-icon matSuffix color="primary">filter_alt</mat-icon>
         </mat-form-field>
       </div>
 
       <table mat-table [dataSource]="dataSource" class="vaccine_lots_table_content">
         <mat-text-column name="id" headerText="Id lote"></mat-text-column>
-        <mat-text-column name="cantidadDosis" headerText="Cantidad"></mat-text-column>
-        <ng-container matColumnDef="idLaboratorio">
+        <mat-text-column name="cantidad" headerText="Cantidad"></mat-text-column>
+        <ng-container matColumnDef="laboratorio">
           <th mat-header-cell *matHeaderCellDef>laboratorio</th>
-          <td mat-cell *matCellDef="let lot" class="users_table_content-actions">{{lot.idLaboratorio.nombre}}</td>
+          <td mat-cell *matCellDef="let lot" class="users_table_content-actions">{{lot.laboratorio.nombre}}</td>
         </ng-container>
         <ng-container matColumnDef="estado">
           <th mat-header-cell *matHeaderCellDef>estado</th>
           <td mat-cell *matCellDef="let lot" class="users_table_content-actions">{{lot.estado.estado}}</td>
         </ng-container>
-        <ng-container matColumnDef="fechaAdquisicion">
+        <ng-container matColumnDef="fecha">
           <th mat-header-cell *matHeaderCellDef>fecha obtención</th>
-          <td mat-cell *matCellDef="let lot">{{lot.fechaAdquisicion | date: 'mediumDate'}}</td>
+          <td mat-cell *matCellDef="let lot">{{lot.fecha | date: 'mediumDate'}}</td>
         </ng-container>
         <ng-container matColumnDef="action">
           <th mat-header-cell *matHeaderCellDef></th>
           <td mat-cell *matCellDef="let action" class="vaccine_lots_table_content-actions">
-            <button mat-icon-button color="warn" *ngIf="action.estado.id == 1">
+            <button mat-icon-button color="warn" *ngIf="action.estado.id == 1" (click)="deleteUser(action)">
               <mat-icon>delete</mat-icon>
             </button>
           </td>

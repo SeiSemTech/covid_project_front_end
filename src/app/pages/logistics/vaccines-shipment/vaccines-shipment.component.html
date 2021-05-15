@@ -4,7 +4,7 @@
       <div style="display: flex; justify-content: space-around; flex-wrap: wrap">
         <mat-form-field appearance="legacy" style="width: 45%;">
           <mat-label>Tipo de vacuna</mat-label>
-          <mat-select formControlName="idLaboratorio" required (selectionChange)="funcionPrueba()">
+          <mat-select formControlName="laboratorio" required (selectionChange)="funcionPrueba()">
             <mat-option *ngFor="let laboratory of laboratories"
                         [value]="laboratory.id"> {{laboratory.nombre}}</mat-option>
           </mat-select>
