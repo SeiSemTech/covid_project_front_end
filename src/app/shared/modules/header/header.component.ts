@@ -6,11 +6,6 @@ import {Router} from "@angular/router";
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
-
+export class HeaderComponent {
   constructor(public route: Router) { }
-
-  ngOnInit(): void {
-  }
-
 }

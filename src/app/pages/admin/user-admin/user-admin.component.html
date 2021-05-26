@@ -14,7 +14,7 @@
       </ng-container>
       <ng-container *ngIf="!user.id">
         <div style="display: flex; align-items: center; padding: 1rem 0; flex-direction: column">
-          <div class="profile_user-image"></div>
+          <div class="profile_user-image" [style.backgroundImage]="'select_user' | images: 'image'"></div>
           <h1 style="color: #777777; text-align: center">Selecciona un usuario para asignar sus roles</h1>
         </div>
       </ng-container>

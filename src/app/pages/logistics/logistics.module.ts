@@ -21,6 +21,7 @@ import {MatNativeDateModule} from "@angular/material/core";
 import {MessageModule} from "../../shared/modules/message/message.module";
 import {LottieModule} from "ngx-lottie";
 import {playerFactory} from "../auth/auth.module";
+import {PipesModule} from "../../core/pipes/pipes.module";
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import {playerFactory} from "../auth/auth.module";
     MatButtonModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MessageModule
+    MessageModule,
+    PipesModule
   ],
   providers: [
     {

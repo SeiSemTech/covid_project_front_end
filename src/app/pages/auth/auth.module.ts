@@ -12,6 +12,7 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MessageModule} from "../../shared/modules/message/message.module";
 import {MatDialogModule} from "@angular/material/dialog";
+import {PipesModule} from "../../core/pipes/pipes.module";
 
 export function playerFactory() {
   return player;
@@ -32,7 +33,8 @@ export function playerFactory() {
     MatCheckboxModule,
     ReactiveFormsModule,
     MatDialogModule,
-    MessageModule
+    MessageModule,
+    PipesModule,
   ]
 })
 export class AuthModule {

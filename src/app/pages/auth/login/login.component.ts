@@ -8,6 +8,7 @@ import {Login} from '../../../core/models/Login';
 import {MatDialog} from "@angular/material/dialog";
 import {MessageComponent} from "../../../shared/modules/message/message.component";
 import * as jwt_decode from 'jwt-decode';
+import {ImagesPipe} from "../../../core/pipes/images.pipe";
 
 
 @Component({
@@ -16,11 +17,11 @@ import * as jwt_decode from 'jwt-decode';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  public options: AnimationOptions = {path: '/covid_project_front_end/assets/lottie/covid_login.json'};
+  public options: AnimationOptions = {path: this.imagesPipe.transform('covid_login', 'lottie') };
   public hide = true;
   public form: FormGroup;
 
-  constructor(private router: Router, private authService: AuthService, private formBuilder: FormBuilder, public dialog: MatDialog) { }
+  constructor(private router: Router, private authService: AuthService, private formBuilder: FormBuilder, public dialog: MatDialog, private imagesPipe: ImagesPipe) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({

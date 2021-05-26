@@ -1,5 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {environment} from "../../../../environments/environment";
+import {SvgImages} from "../../../core/types/svg-images";
 
 @Component({
   selector: 'app-title-bar',
@@ -9,14 +10,10 @@ import {environment} from "../../../../environments/environment";
 export class TitleBarComponent {
 
   @Input('title') title: string;
-  @Input('icon') icon: string;
+  @Input('icon') icon: SvgImages;
   @Input('color') color: 'blue'|'yellow'|'light'|'red';
 
   colors = ColorEnum;
-
-  urlResolver(icon: string) {
-    return "url('" + environment.assets + "svg/" + icon + ".svg')";
-  }
 
 }
 

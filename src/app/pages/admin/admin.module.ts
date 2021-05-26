@@ -21,6 +21,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {InfoPanelModule} from "../../shared/modules/info-panel/info-panel.module";
 import {TitleBarModule} from "../../shared/modules/title-bar/title-bar.module";
+import {PipesModule} from "../../core/pipes/pipes.module";
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import {TitleBarModule} from "../../shared/modules/title-bar/title-bar.module";
     MatTableModule,
     MatPaginatorModule,
     InfoPanelModule,
-    TitleBarModule
+    TitleBarModule,
+    PipesModule
   ]
 })
 export class AdminModule {

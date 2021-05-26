@@ -7,6 +7,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HeaderModule} from "./shared/modules/header/header.module";
 import {InterceptorInterceptor} from "./shared/interceptor/interceptor.interceptor";
+import {ImagesPipe} from "./core/pipes/images.pipe";
 
 @NgModule({
   declarations: [
@@ -17,13 +18,16 @@ import {InterceptorInterceptor} from "./shared/interceptor/interceptor.intercept
     AppRoutingModule,
     HttpClientModule,
     HeaderModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
-  providers: [{
-    provide: HTTP_INTERCEPTORS,
-    useClass: InterceptorInterceptor,
-    multi: true
-  }],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptorInterceptor,
+      multi: true
+    },
+    ImagesPipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

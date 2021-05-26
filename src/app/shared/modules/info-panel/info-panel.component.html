@@ -1,5 +1,5 @@
 <div class="info_header">
-  <div class="info_header-icon" [style.background-image]="urlResolver(icon)"></div>
+  <div class="info_header-icon" [style.background-image]="icon | images: 'image'"></div>
   <div class="info_header-title">{{title}}</div>
 </div>
 <form class="info_body">

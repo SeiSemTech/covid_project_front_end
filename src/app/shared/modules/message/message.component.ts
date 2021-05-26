@@ -1,6 +1,8 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import {Component, Inject} from '@angular/core';
+import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 import {AnimationOptions} from "ngx-lottie";
+import {ImagesPipe} from "../../../core/pipes/images.pipe";
+import {LottieImages} from "../../../core/types/lottie-images";
 
 @Component({
   selector: 'app-message',
@@ -8,7 +10,6 @@ import {AnimationOptions} from "ngx-lottie";
   styleUrls: ['./message.component.scss']
 })
 export class MessageComponent {
-  public options: AnimationOptions = {path: '/covid_project_front_end/assets/lottie/' + this.data.icon + '.json'};
-
-  constructor(@Inject(MAT_DIALOG_DATA) public data: { message: string; icon: string; button: string}) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: { message: string; icon: LottieImages; button: string}, private imagesPipe: ImagesPipe) { }
+  public options: AnimationOptions = {path: this.imagesPipe.transform(this.data.icon, 'lottie')};
 }
