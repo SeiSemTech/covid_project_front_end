@@ -39,7 +39,7 @@ export class VaccineLotsComponent implements OnInit, AfterViewInit {
 
   createVaccineLot() {
     this.form.value.estado = {id:1};
-    this.form.value.costo = 0;
+    this.form.value.costo = 1;
     if(this.lot.id)  {
       this.vaccineLotsService.updateVaccineLot(this.form.value).subscribe(response => this.dialogFunction(response));
     } else {
@@ -64,9 +64,11 @@ export class VaccineLotsComponent implements OnInit, AfterViewInit {
   }
 
   selectVaccineLot(lot: Lot) {
-    this.lot = lot
-    this.form.setValue(lot);
-    this.form.controls['laboratorio'].setValue(lot.laboratorio);
+    if (lot.estado.id === 1) {
+      this.lot = lot
+      this.form.setValue(lot);
+      this.form.controls['laboratorio'].setValue(lot.laboratorio);
+    }
   }
 
   ngAfterViewInit() {
@@ -83,7 +85,7 @@ export class VaccineLotsComponent implements OnInit, AfterViewInit {
 
   deleteUser(lot: Lot): void {
     const dialogRef = this.dialog.open(ValidationComponent, {
-      data: "¿Está seguro que desea desactivar el usuario?, una vez desactivado no podrá visualizarlo"
+      data: "¿Está seguro que desea eliminar este lote?"
     });
     dialogRef.afterClosed().subscribe((data: boolean) => {
       if (data) {

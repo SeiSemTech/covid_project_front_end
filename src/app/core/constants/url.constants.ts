@@ -2,6 +2,7 @@ export const URL = {
   LOGIN: `/login`,
   USER: `/user`,
   ROL: `/rol`,
-  VACCINE: `/lote`,
+  LOT: `/lote`,
   LABORATORY: `/laboratory`,
+  VACCINE: `/vacuna`,
 };

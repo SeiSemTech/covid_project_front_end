@@ -12,7 +12,7 @@ import {Response} from "../../core/dto/response";
 })
 export class VaccineLotsService {
 
-  private readonly urlVaccine: string = `${environment.apiUrl + URL.VACCINE}`
+  private readonly urlVaccine: string = `${environment.apiUrl + URL.LOT}`
 
   constructor(private http: HttpClient) { }
 

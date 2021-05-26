@@ -78,8 +78,8 @@
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"class="example-element-row"
-            (click)="selectVaccineLot(row)" [ngClass]="{ 'table_column-selected': row.id === lot.id }"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="example-element-row"
+            (click)="selectVaccineLot(row)" [ngClass]="{ 'table_column-selected': row.id === lot.id  && row.estado.id === 1}"></tr>
         <tr class="mat-row" *matNoDataRow>
           <td class="mat-cell" colspan="5">No data matching the filter "{{input.value}}"</td>
         </tr>

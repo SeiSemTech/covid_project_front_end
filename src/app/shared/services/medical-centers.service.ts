@@ -5,6 +5,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
 import {Send} from "../../core/models/Send";
+import {Response} from "../../core/dto/response";
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +16,12 @@ export class MedicalCentersService {
 
   constructor(private http: HttpClient) { }
 
-  public getAllMedicalCenters(): Observable<Send[]> {
+  public getAllMedicalCenters(): Observable<Response<Send[]>> {
 
-    return this.http.get('https://www.datos.gov.co/resource/u82n-j82m.json', {headers:{skip:"true"}}).pipe(map((send: Send[]) => send));
+    return this.http.get(this.urlVaccine+'/getCentros').pipe(map((send: Response<Send[]>) => send));
+  }
+
+  public updateMedicalCenters(send: Send): Observable<any> {
+    return this.http.post(this.urlVaccine+'/enviarVacuna', send).pipe(map(send => send));
   }
 }

@@ -1,21 +1,28 @@
 <div class="container">
-  <div style="width: 30%">
-    <app-info-panel title="Detalle de envios" icon="list_logo" (submit)="createBatch()" [formGroup]="form">
+  <div style="width: 20%">
+    <app-info-panel title="Detalle de envios" icon="list_logo" (submit)="save()" [formGroup]="form">
+      <div style="display: flex; justify-content: space-between; margin-bottom: 1rem; height: 2rem; align-items: center">
+        <div style="font-size: 1.2vmax; color: #777">Enviar a {{send.direccion}}</div>
+        <button mat-icon-button color="warn" *ngIf="lot.id">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+
       <div style="display: flex; justify-content: space-around; flex-wrap: wrap">
-        <mat-form-field appearance="legacy" style="width: 45%;">
+        <mat-form-field appearance="legacy" style="width: 100%;">
           <mat-label>Tipo de vacuna</mat-label>
           <mat-select formControlName="laboratorio" required (selectionChange)="funcionPrueba()">
             <mat-option *ngFor="let laboratory of laboratories"
                         [value]="laboratory.id"> {{laboratory.nombre}}</mat-option>
           </mat-select>
         </mat-form-field>
-        <mat-form-field appearance="legacy" style="width: 45%;">
-          <mat-label>Cantidad de vacunas</mat-label>
-          <input matInput type="number" formControlName="cantidadVac" required/>
-        </mat-form-field>
-        <div class="announce-text" align="center">
-          Disponibles: {{asd}}
-        </div>
+          <mat-form-field appearance="legacy" style="width: 100%;">
+            <mat-label>Cantidad de vacunas</mat-label>
+            <input matInput type="number" formControlName="cantidad" required/>
+          </mat-form-field>
+          <div class="announce-text" align="center">
+            Disponibles: <b>{{asd}}</b>
+          </div>
       </div>
     </app-info-panel>
     <div style="margin-top: 1rem; color: #777777"><app-info-panel title="Ultimo envio" icon="send_logo">
@@ -34,7 +41,7 @@
       <div class="vaccine_lots_table_top">
         <mat-form-field class="vaccine_lots_table_top-filter">
           <mat-label>Filter</mat-label>
-          <input matInput (keyup)="applyFilter($event)" placeholder="Filtro" #input>
+          <input matInput (keyup)="applyFilter($event)" type="text" placeholder="Filtro" #input>
           <mat-icon matSuffix color="primary">filter_alt</mat-icon>
         </mat-form-field>
       </div>
@@ -46,19 +53,10 @@
         <mat-text-column name="sede_nombre" headerText="Sede"></mat-text-column>
         <mat-text-column name="direccion" headerText="Direccion"></mat-text-column>
         <mat-text-column name="telefono" headerText="Telefono"></mat-text-column>
-        <ng-container matColumnDef="action">
-          <th mat-header-cell *matHeaderCellDef></th>
-          <td mat-cell *matCellDef="let action" class="vaccine_lots_table_content-actions">
-            <button mat-icon-button color="accent">
-              <mat-icon>edit</mat-icon>
-            </button>
-            <button mat-icon-button color="warn">
-              <mat-icon>delete</mat-icon>
-            </button>
-          </td>
-        </ng-container>
+        <mat-text-column name="cantidad" headerText="Cantidad lotes enviados"></mat-text-column>
         <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns2;" class="example-element-row"
+            (click)="selectVaccineLot(row)" [ngClass]="{ 'table_column-selected': row.id === send.id  && row.estado.id === 1}"></tr>
 
         <tr class="mat-row" *matNoDataRow>
           <td class="mat-cell" colspan="5">No data matching the filter "{{input.value}}"</td>
