@@ -15,4 +15,5 @@ export type SvgImages =
   | 'send_logo'
   | 'system_settings'
   | 'system_user'
+  | 'vaccine'
   | 'vaccine_lots';

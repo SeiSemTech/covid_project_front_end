@@ -8,7 +8,7 @@ import {User} from '../../../core/models/User';
 import {MedicalCentersService} from '../../../shared/services/medical-centers.service';
 import {Send} from "../../../core/models/Send";
 import {VaccineLotsService} from "../../../shared/services/vaccine-lots.service";
-import { MatPaginator } from '@angular/material/paginator';
+import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from "@angular/material/sort";
 import {MessageComponent} from "../../../shared/modules/message/message.component";
 import {MatDialog} from "@angular/material/dialog";
@@ -28,15 +28,19 @@ export class VaccinesShipmentComponent implements OnInit, AfterViewInit {
   send = new Send();
   laboratories = [new Laboratory()];
 
-  public asd: number;
+  public allVaccines: number;
+  public initVaccines: number;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  constructor(private formBuilder: FormBuilder, private laboratoryService: LaboratoryService, private vaccinesShipmentService: MedicalCentersService, private vaccineLotsService: VaccineLotsService, public dialog: MatDialog) { }
+
+  constructor(private formBuilder: FormBuilder, private laboratoryService: LaboratoryService, private vaccinesShipmentService: MedicalCentersService, private vaccineLotsService: VaccineLotsService, public dialog: MatDialog) {
+  }
 
   ngOnInit(): void {
     this.laboratoryService.getAllLaboratories().subscribe(data => this.laboratories = data.response);
     this.vaccineLotsService.getAllVaccineLots().subscribe(data => {
-      this.asd = data.response.filter(vaccinessl => vaccinessl.laboratorio.id = 1).map(vaccine =>vaccine.cantidad).reduce((a, b) => a + b, 0);
+      this.initVaccines = data.response.filter(vaccinessl => vaccinessl.laboratorio.id = 1).map(vaccine => vaccine.cantidad).reduce((a, b) => a + b, 0);
+      this.allVaccines = this.initVaccines;
       this.dataSource = new MatTableDataSource<Lot>(data.response);
     });
 
@@ -46,21 +50,35 @@ export class VaccinesShipmentComponent implements OnInit, AfterViewInit {
 
     this.form = this.formBuilder.group({
       laboratorio: [''],
-      cantidad: ['',[Validators.required]]
+      cantidad: ['', [Validators.required]]
     });
   }
-  funcionPrueba(){
-   // const id = this.form.value.laboratorio;
-   // this.asd = this.dataSource.data.filter(vaccinessl => vaccinessl.laboratorio = id).map(vaccine =>vaccine.cantidadDosis).reduce((a, b) => a + b, 0);
-   // return id;
+
+  recountVaccines() {
+    const id = this.form.value.laboratorio;
+    const amount = this.form.value.cantidad;
+    this.initVaccines = this.dataSource.data.filter(vs => vs.laboratorio.id === id).map(v => v.cantidad).reduce((a, b) => a + b, 0);
+    this.allVaccines = this.initVaccines;
+    if (amount && amount > this.allVaccines) this.form.controls['cantidad'].setValue(this.allVaccines);
+  }
+
+  subtractVaccines() {
+    if (!/[0-9]+/g.test(this.form.value.cantidad)) this.form.controls['cantidad'].setValue('');
+    if (this.initVaccines >= this.form.value.cantidad) {
+      this.allVaccines = this.initVaccines - this.form.value.cantidad;
+    } else {
+      this.allVaccines = 0;
+      this.form.controls['cantidad'].setValue(this.initVaccines);
+    }
+
   }
 
   save() {
     this.send.cantidad = this.form.value.cantidad;
     this.vaccinesShipmentService.updateMedicalCenters(this.send).subscribe(response =>
       this.dialog.open(MessageComponent, {
-      data: {message: response.mensaje, icon: "check", button: "¡Listo!"}
-    })
+        data: {message: response.mensaje, icon: "check", button: "¡Listo!"}
+      })
     );
   }
 
