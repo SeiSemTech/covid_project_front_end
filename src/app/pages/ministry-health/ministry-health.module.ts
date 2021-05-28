@@ -5,6 +5,12 @@ import { MinistryHealthRoutingModule } from "./ministry-health.routing";
 import { PopulationVaccineComponent } from './population-vaccine/population-vaccine.component';
 import {TitleBarModule} from "../../shared/modules/title-bar/title-bar.module";
 import {InfoPanelModule} from "../../shared/modules/info-panel/info-panel.module";
+import {MatTableModule} from "@angular/material/table";
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatIconModule} from "@angular/material/icon";
+import {SharedModule} from "../../shared/shared.module";
+import {MatInputModule} from "@angular/material/input";
 
 
 
@@ -16,8 +22,14 @@ import {InfoPanelModule} from "../../shared/modules/info-panel/info-panel.module
   imports: [
     CommonModule,
     MinistryHealthRoutingModule,
+    MatFormFieldModule,
+    MatInputModule,
     TitleBarModule,
-    InfoPanelModule
+    InfoPanelModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatIconModule,
+    SharedModule
   ]
 })
 export class MinistryHealthModule { }

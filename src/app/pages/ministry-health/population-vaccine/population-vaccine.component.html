@@ -1,13 +1,39 @@
 <div class="container">
-  <div style="width: 30%">
+  <div style="width: 25%">
     <app-info-panel title="Atención" icon="message_alert">
       <div>Se informa que las reglas de decisión que se toman para definir la prioridad de vacunación se encuentran en
         el modulo <b>Reglas de decisión</b>.
       </div>
     </app-info-panel>
   </div>
-  <div style="width: 65%">
+  <div style="width: 72%">
     <app-title-bar color="red" icon="vaccine" title="Población a vacunar"></app-title-bar>
+
+    <div class="patients_table">
+      <div class="patients_table_top">
+        <mat-form-field class="patients_table_top-filter">
+          <mat-label>Filter</mat-label>
+          <input matInput (keyup)="applyFilter($event)" type="text" placeholder="Filtro" #input>
+          <mat-icon matSuffix color="primary">filter_alt</mat-icon>
+        </mat-form-field>
+      </div>
+      <table mat-table [dataSource]="dataSource" class="patients_table_content">
+        <mat-text-column name="id" headerText="Id"></mat-text-column>
+        <mat-text-column name="tipoDocumento" headerText="tipo de documento"></mat-text-column>
+        <mat-text-column name="nombres" headerText="nombres"></mat-text-column>
+        <mat-text-column name="apellidos" headerText="apellidos"></mat-text-column>
+        <mat-text-column name="fechaNacimiento" headerText="fecha nacimiento"></mat-text-column>
+        <mat-text-column name="edad" headerText="edad"></mat-text-column>
+        <mat-text-column name="ocupacion" headerText="ocupación"></mat-text-column>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="7">No data matching the filter "{{input.value}}"</td>
+        </tr>
+      </table>
+      <mat-paginator [pageSizeOptions]="[10, 50, 100]" showFirstLastButtons></mat-paginator>
+    </div>
   </div>
 </div>
 
