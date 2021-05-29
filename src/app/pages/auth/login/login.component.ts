@@ -34,11 +34,10 @@ export class LoginComponent implements OnInit {
     const login: Login = this.form.value;
     this.authService.
     login(login).subscribe((response: {jwt, mensaje, usuario}) => {
-      console.log(response)
       if(response && response.jwt) {
         // const decoded = jwt_decode(response.jwt);
         localStorage.setItem('token', response.jwt);
-        localStorage.setItem('roles', response.usuario.roles);
+        localStorage.setItem('roles', JSON.stringify(response.usuario.roles));
         this.router.navigate([PATHS.DASHBOARD.MAIN]);
       } else {
           this.dialog.open(MessageComponent, {
@@ -47,5 +46,4 @@ export class LoginComponent implements OnInit {
       }
     } );
   }
-
 }

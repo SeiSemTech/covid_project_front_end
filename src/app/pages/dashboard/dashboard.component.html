@@ -1,40 +1,40 @@
-<button mat-raised-button (click)="goTo(paths.ADMIN.PRINCIPAL)" color="primary">administrador</button>
-<button mat-raised-button (click)="goTo(paths.LOGISTICS.PRINCIPAL+'/'+paths.LOGISTICS.VACCINE_LOTS)" color="primary">Logística lotes vacunas</button>
-<button mat-raised-button (click)="goTo(paths.LOGISTICS.PRINCIPAL+'/'+paths.LOGISTICS.VACCINES_SHIPMENT)" color="primary">Logística envió vacunas</button>
-<button mat-raised-button (click)="goTo(paths.MINISTRY_HEALTH.PRINCIPAL+'/'+paths.MINISTRY_HEALTH.BUSINESS_RULES)" color="primary">Reglas de negocio</button>
-<button mat-raised-button (click)="goTo(paths.MINISTRY_HEALTH.PRINCIPAL+'/'+paths.MINISTRY_HEALTH.POPULATION_TO_VACCINE)" color="primary">Población a vacunar</button>
 <button mat-raised-button (click)="closeSession()" color="warn">Cerrar sesión</button>
 
 <div class='body-home'>
   <app-card
-  (click)="goTo(paths.ADMIN.PRINCIPAL)"
-  icon='profile_admin' color='blue'
-  titulo='Administración de usuarios y perfiles'
-  subtitulo='Administrador'>
+    *ngIf="isRole('ROLE_ADMIN')"
+    (click)="goTo(paths.ADMIN.PRINCIPAL)"
+    icon='profile_admin' color='blue'
+    titulo='Administración de usuarios y perfiles'
+    subtitulo='Administrador'>
   </app-card>
   <app-card
+    *ngIf="isRole('ROLE_AUXILIAR')"
     (click)="goTo(paths.LOGISTICS.PRINCIPAL+'/'+paths.LOGISTICS.VACCINE_LOTS)"
     icon='profile_lots' color='yellow'
-    titulo='Administración de usuarios y perfiles'
-    subtitulo='Administrador'>
+    titulo='Lotes de vacunas disponibles'
+    subtitulo='Auxiliar de logística'>
   </app-card>
   <app-card
+    *ngIf="isRole('ROLE_AUXILIAR')"
     (click)="goTo(paths.LOGISTICS.PRINCIPAL+'/'+paths.LOGISTICS.VACCINES_SHIPMENT)"
     icon='profile_lots' color='yellow'
-    titulo='Administración de usuarios y perfiles'
-    subtitulo='Administrador'>
+    titulo='Envío de vacunas'
+    subtitulo='Auxiliar de logística'>
   </app-card>
   <app-card
+    *ngIf="isRole('ROLE_PERSONAL')"
     (click)="goTo(paths.MINISTRY_HEALTH.PRINCIPAL+'/'+paths.MINISTRY_HEALTH.BUSINESS_RULES)"
     icon='profile_nurse' color='light'
-    titulo='Administración de usuarios y perfiles'
-    subtitulo='Administrador'>
+    titulo='Aplicación de vacuna'
+    subtitulo='Personal de la salud'>
   </app-card>
   <app-card
+    *ngIf="isRole('ROLE_COORDINADOR')"
     (click)="goTo(paths.MINISTRY_HEALTH.PRINCIPAL+'/'+paths.MINISTRY_HEALTH.POPULATION_TO_VACCINE)"
     icon='profile_medical_center' color='red'
-    titulo='Administración de usuarios y perfiles'
-    subtitulo='Administrador'>
+    titulo='Aplicación de vacuna'
+    subtitulo='Personal de la salud'>
   </app-card>
 </div>
 
