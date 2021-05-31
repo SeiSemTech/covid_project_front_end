@@ -17,7 +17,7 @@ export class TitleBarComponent {
 
 }
 
-enum ColorEnum {
+export enum ColorEnum {
   'blue'   = "#007AB7",
   'yellow' = "#D69400",
   'light'  = "#3CB6D2",
