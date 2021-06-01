@@ -1,0 +1,169 @@
+@import "../../../../assets/scss/index";
+.one-card {
+  width: 317px;
+  height: 667px;
+  background-color: $MOD1;
+  margin-right: 10px;
+}
+
+.two-card {
+  width: 317px;
+  height: 667px;
+  background-color: #069169;
+  margin-right: 10px;
+}
+
+.three-card {
+  width: 317px;
+  height: 667px;
+  background-color: #F8B404;
+  margin-right: 10px;
+}
+
+.four-card {
+  width: 317px;
+  height: 667px;
+  background-color: #40BCB4;
+  margin-right: 10px;
+}
+
+.five-card {
+  width: 317px;
+  height: 667px;
+  background-color: #F82C64;
+  margin-right: 10px;
+}
+
+.cerdo-image{
+  width: 136px;
+  height: 171px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-bottom: 10px;
+}
+.moma-image{
+  width: 136px;
+  height: 171px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-bottom: 10px;
+}
+.nurse-image{
+  width: 136px;
+  height: 171px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-bottom: 10px;
+}
+.girl-image{
+  width: 136px;
+  height: 171px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-bottom: 10px;
+}
+.teen-image{
+  width: 136px;
+  height: 171px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-bottom: 10px;
+}
+
+.headdd{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+
+}
+
+.textT{
+  width: 100%;
+  font-size: 2vmax;
+  display: flex;
+  justify-content: center;
+  color: #e0e0e0;
+}
+
+.text{
+  width: 90%;
+  font-size: 1vmax;
+  display: inherit;
+  justify-content: center;
+  color: #e0e0e0;
+  margin-top: 150px;
+}
+
+
+tr.example-element-row { cursor: pointer; transition: background .5s}
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+.table_column-selected {
+  transition: background .2s;
+  background: #efefef;
+}
+
+.vaccine_lots {
+  width: 77%;
+
+  &_table {
+    border: 2px solid #D5D5D5;
+    background-color: white;
+
+    &_top {
+      border-bottom: 2px solid #D5D5D5;
+      background-color: white;
+      display: flex;
+      align-items: center;
+      padding: .5rem 1rem;
+      justify-content: space-between;
+
+      &-filter { width: 30% }
+    }
+
+    &_content {
+      width: 100%;
+
+      &-actions {
+        text-align: end;
+        width: 5rem;
+      }
+    }
+  }
+}
+
+.announce {
+  border: 2px solid #D5D5D5;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+  justify-content: space-between;
+  padding: 1.5rem 1rem;
+
+  &-image{
+    background-image: url('/assets/svg/send_logo.svg');
+    width: 3rem;
+    height: 3rem;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+  }
+  &-text {
+    width: 85%;
+    font-size: 1vmax;
+    color: #777777;
+  }
+}
