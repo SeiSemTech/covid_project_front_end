@@ -1,12 +1,12 @@
 <div class="container">
-  <div style="width: 25%">
+  <div style="width: 20%">
     <app-info-panel title="Atención" icon="message_alert">
       <div>Se informa que las reglas de decisión que se toman para definir la prioridad de vacunación se encuentran en
         el modulo <b>Reglas de decisión</b>.
       </div>
     </app-info-panel>
   </div>
-  <div style="width: 72%">
+  <div style="width: 78%">
     <app-title-bar color="red" icon="vaccine" title="Población a vacunar"></app-title-bar>
 
     <div class="patients_table">
@@ -19,12 +19,34 @@
       </div>
       <table mat-table [dataSource]="dataSource" class="patients_table_content">
         <mat-text-column name="id" headerText="Id"></mat-text-column>
-        <mat-text-column name="tipoDocumento" headerText="tipo de documento"></mat-text-column>
-        <mat-text-column name="nombres" headerText="nombres"></mat-text-column>
-        <mat-text-column name="apellidos" headerText="apellidos"></mat-text-column>
-        <mat-text-column name="fechaNacimiento" headerText="fecha nacimiento"></mat-text-column>
-        <mat-text-column name="edad" headerText="edad"></mat-text-column>
-        <mat-text-column name="ocupacion" headerText="ocupación"></mat-text-column>
+        <ng-container matColumnDef="documento">
+          <th mat-header-cell *matHeaderCellDef>Documento</th>
+          <td mat-cell *matCellDef="let population">{{population.tipo_documento}} {{population.id_cedula}}</td>
+        </ng-container>
+        <ng-container matColumnDef="paciente">
+          <th mat-header-cell *matHeaderCellDef>Paciente</th>
+          <td mat-cell *matCellDef="let population">{{population.nombre_paciente}} {{population.apellido_paciente}}</td>
+        </ng-container>
+        <ng-container matColumnDef="fecha_nacimiento">
+          <th mat-header-cell *matHeaderCellDef>Fecha de nacimiento</th>
+          <td mat-cell *matCellDef="let population">{{population.fecha_nacimiento | date: 'mediumDate'}}</td>
+        </ng-container>
+        <ng-container matColumnDef="ocupacion">
+          <th mat-header-cell *matHeaderCellDef>Ocupación</th>
+          <td mat-cell *matCellDef="let population">{{population.ocupacion.nombre}}</td>
+        </ng-container>
+        <ng-container matColumnDef="etapa">
+          <th mat-header-cell *matHeaderCellDef>Etapa</th>
+          <td mat-cell *matCellDef="let population">{{population.etapa.nombre}}</td>
+        </ng-container>
+        <ng-container matColumnDef="estadoPaciente">
+          <th mat-header-cell *matHeaderCellDef>Estado del paciente</th>
+          <td mat-cell *matCellDef="let population">{{population.estadoPaciente.nombre}}</td>
+        </ng-container>
+        <ng-container matColumnDef="centroSalud">
+          <th mat-header-cell *matHeaderCellDef>Centro de salud asignado</th>
+          <td mat-cell *matCellDef="let population">{{population.centroSalud.sede_nombre}}<br>{{population.centroSalud.direccion}}</td>
+        </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 

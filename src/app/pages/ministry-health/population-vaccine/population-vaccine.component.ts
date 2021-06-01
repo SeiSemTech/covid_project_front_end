@@ -12,7 +12,7 @@ import {MatSort} from "@angular/material/sort";
 })
 export class PopulationVaccineComponent implements OnInit, AfterViewInit {
 
-  displayedColumns: string[] = ['id', 'tipoDocumento', 'nombres', 'apellidos', 'fechaNacimiento', 'edad', 'ocupacion'];
+  displayedColumns: string[] = ['id', 'documento', 'paciente', 'fecha_nacimiento', 'ocupacion', 'etapa', 'estadoPaciente','centroSalud'];
   dataSource = new MatTableDataSource<Poblacion>();
   constructor(private populationService: PopulationService) { }
 

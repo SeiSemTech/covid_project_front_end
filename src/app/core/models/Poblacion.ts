@@ -1,9 +1,15 @@
+import {Ocupacion} from "./ocupacion";
+import {EstadoPaciente} from "./estadoPaciente";
+import {Send} from "./Send";
+
 export class Poblacion {
   id: number;
-  tipoDocumento: String;
-  nombres: string;
-  apellidos: string;
+  id_cedula: string;
+  tipo_documento: String;
+  nombre_paciente: string;
+  apellido_paciente: string;
   fechaNacimiento: number;
-  edad: number;
-  ocupacion: string
+  ocupacion: Ocupacion;
+  estadoPaciente: EstadoPaciente;
+  centroSalud: Send;
 }
