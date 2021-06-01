@@ -5,6 +5,8 @@ import { MinistryHealthRoutingModule } from "./ministry-health.routing";
 import { PopulationVaccineComponent } from './population-vaccine/population-vaccine.component';
 import {TitleBarModule} from "../../shared/modules/title-bar/title-bar.module";
 import {InfoPanelModule} from "../../shared/modules/info-panel/info-panel.module";
+import {MatCardModule} from '@angular/material/card';
+import {PipesModule} from "../../core/pipes/pipes.module";
 
 
 
@@ -17,7 +19,9 @@ import {InfoPanelModule} from "../../shared/modules/info-panel/info-panel.module
     CommonModule,
     MinistryHealthRoutingModule,
     TitleBarModule,
-    InfoPanelModule
+    InfoPanelModule,
+    MatCardModule,
+    PipesModule
   ]
 })
 export class MinistryHealthModule { }
