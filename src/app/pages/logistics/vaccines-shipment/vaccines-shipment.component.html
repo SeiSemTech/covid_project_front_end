@@ -60,12 +60,17 @@
 
       <table mat-table [dataSource]="dataSource2" class="vaccine_lots_table_content">
         <mat-text-column name="id" headerText="Id"></mat-text-column>
-        <mat-text-column name="depa_nombre" headerText="Departamento"></mat-text-column>
-        <mat-text-column name="muni_nombre" headerText="Municipio"></mat-text-column>
-        <mat-text-column name="sede_nombre" headerText="Sede"></mat-text-column>
+        <ng-container matColumnDef="departamento">
+          <th mat-header-cell *matHeaderCellDef>Departamento</th>
+          <td mat-cell *matCellDef="let send">{{send.centroPoblado.municipio.departamento.nombre_departamento}}</td>
+        </ng-container>
+        <ng-container matColumnDef="municipio">
+          <th mat-header-cell *matHeaderCellDef>municipio</th>
+          <td mat-cell *matCellDef="let send">{{send.centroPoblado.municipio.nombre_municipio}}</td>
+        </ng-container>
+        <mat-text-column name="nombre" headerText="Sede"></mat-text-column>
         <mat-text-column name="direccion" headerText="Dirección"></mat-text-column>
-        <mat-text-column name="telefono" headerText="Teléfono"></mat-text-column>
-        <mat-text-column name="cantidad" headerText="Cantidad lotes enviados"></mat-text-column>
+        <mat-text-column name="lote" headerText="Cantidad vacunas enviadas"></mat-text-column>
         <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns2;" class="example-element-row"
             (click)="selectVaccineLot(row)" [ngClass]="{ 'table_column-selected': row.id === send.id}"></tr>

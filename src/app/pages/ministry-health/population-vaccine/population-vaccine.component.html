@@ -33,7 +33,7 @@
         </ng-container>
         <ng-container matColumnDef="ocupacion">
           <th mat-header-cell *matHeaderCellDef>Ocupación</th>
-          <td mat-cell *matCellDef="let population">{{population.ocupacion.nombre}}</td>
+          <td mat-cell *matCellDef="let population">{{population.ocupacion.nombre.substring(0,40)}}{{population.ocupacion.nombre.length > 40 ? '...' : ''}}</td>
         </ng-container>
         <ng-container matColumnDef="etapa">
           <th mat-header-cell *matHeaderCellDef>Etapa</th>

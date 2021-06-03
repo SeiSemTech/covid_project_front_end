@@ -17,7 +17,6 @@ export class MedicalCentersService {
   constructor(private http: HttpClient) { }
 
   public getAllMedicalCenters(): Observable<Response<Send[]>> {
-
     return this.http.get(this.urlVaccine+'/getCentros').pipe(map((send: Response<Send[]>) => send));
   }
 

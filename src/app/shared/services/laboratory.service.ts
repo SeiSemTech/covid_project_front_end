@@ -16,10 +16,8 @@ export class LaboratoryService {
   }
 
   public getAllLaboratories(): Observable<{ response: Laboratory[] }> {
-    //DATOS QUEMADOS
     const laboratories: Laboratory[] = [{id: 1, nombre: "PFeizer"}, {id: 2, nombre: "AstraZeneca"}, {id: 3, nombre: "Johnson's & Johnson's"}]
     return new Observable<{response: Laboratory[]}>(observer => observer.next({response: laboratories}));
-    //URL ORIGINAL
     return this.http.get(this.urlLaboratory + '/getLaboratorios').pipe(map((laboratory: { response: Laboratory[] }) => laboratory));
   }
 }

@@ -17,7 +17,6 @@ export class ProfileService {
   constructor(private http: HttpClient) { }
 
   public getAllProfiles():  Observable<Response<Rol[]>> {
-    //URL ORIGINAL
     return this.http.get(this.urlProfile+'/getPerfiles').pipe(map((r: Response<Rol[]>) => r));
   }
 }

@@ -20,7 +20,7 @@ import {MatDialog} from "@angular/material/dialog";
 })
 export class VaccinesShipmentComponent implements OnInit {
 
-  displayedColumns2: string[] = ['id', 'depa_nombre', 'muni_nombre', 'sede_nombre', 'direccion', 'telefono', 'cantidad'];
+  displayedColumns2: string[] = ['id', 'departamento', 'municipio', 'nombre', 'direccion', 'lote'];
   public form: FormGroup;
   dataSource = new MatTableDataSource<Lot>();
   dataSource2 = new MatTableDataSource<Send>();
@@ -45,6 +45,7 @@ export class VaccinesShipmentComponent implements OnInit {
     });
 
     this.vaccinesShipmentService.getAllMedicalCenters().subscribe(data2 => {
+      console.log(data2);
       this.dataSource2 = new MatTableDataSource<Send>(data2.response);
       this.dataSource2.paginator = this.paginator;
       this.dataSource2.sort = this.sort;
@@ -76,7 +77,7 @@ export class VaccinesShipmentComponent implements OnInit {
   }
 
   save() {
-    this.send.cantidad = this.form.value.cantidad;
+    this.send.lote = this.form.value.cantidad;
     this.vaccinesShipmentService.updateMedicalCenters(this.send).subscribe(response =>
       this.dialog.open(MessageComponent, {
         data: {message: response.mensaje, icon: "check", button: "¡Listo!"}

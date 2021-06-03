@@ -25,7 +25,6 @@ export class UserService {
   }
 
   public updateUser(user: User): Observable<{ mensaje, data }> {
-    console.log(user)
     return this.http.post(this.urlUser+'/updateUsuario', user).pipe(map((data:{ mensaje, data }) => data));
   }
 

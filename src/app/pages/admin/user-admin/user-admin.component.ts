@@ -60,7 +60,7 @@ export class UserAdminComponent implements OnInit {
 
   deleteUserProfile(id: number) {
     this.user.roles = this.user.roles.filter(rol => rol.id !== id);
-    this.userService.updateUser(this.user);
+    this.userService.updateUser(this.user).subscribe();
   }
 
   deleteUser(user: User): void {
