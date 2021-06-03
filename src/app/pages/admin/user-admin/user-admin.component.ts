@@ -17,7 +17,7 @@ import {MatSort} from "@angular/material/sort";
   templateUrl: './user-admin.component.html',
   styleUrls: ['./user-admin.component.scss']
 })
-export class UserAdminComponent implements OnInit, AfterViewInit {
+export class UserAdminComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -37,13 +37,10 @@ export class UserAdminComponent implements OnInit, AfterViewInit {
     this.profileService.getAllProfiles().subscribe(data => this.roles = data.response);
     this.userService.getAllUsers().subscribe(data => {
       const userTable: User[] = data.response.filter(user => user.state === true);
-      this.dataSource = new MatTableDataSource<User>(userTable)
+      this.dataSource = new MatTableDataSource<User>(userTable);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     });
-  }
-
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
   }
 
   getSelectedUser(user: User) {

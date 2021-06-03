@@ -21,16 +21,6 @@ export class VaccineLotsService {
   }
 
   public getAllVaccineLots(): Observable<Response<Lot[]>> {
-    // // DATOS QUEMADOS
-    // const laboratories: Lot[] = [
-    //   {id: 1, laboratorio: {id: 1, nombre: "PFeizer"}, estado:{ id: 1, estado: "Registrado"}, cantidadDosis: 400, costo: 2000, fechaAdquisicion: Date.now(), numeroLote: 1},
-    //   {id: 2, laboratorio: {id: 1, nombre: "PFeizer"}, estado:{ id: 1, estado: "Registrado"}, cantidadDosis: 400, costo: 2000, fechaAdquisicion: Date.now(), numeroLote: 1},
-    //   {id: 3, laboratorio: {id: 1, nombre: "PFeizer"}, estado:{ id: 2, estado: "Enviado"}, cantidadDosis: 400, costo: 2000, fechaAdquisicion: Date.now(), numeroLote: 1},
-    //   {id: 4, laboratorio: {id: 1, nombre: "PFeizer"}, estado:{ id: 3, estado: "Entregado"}, cantidadDosis: 400, costo: 2000, fechaAdquisicion: Date.now(), numeroLote: 1},
-    //   {id: 5, laboratorio: {id: 2, nombre: "AstraZeneca"}, estado:{ id: 1, estado: "Registrado"}, cantidadDosis: 400, costo: 2000, fechaAdquisicion: Date.now(), numeroLote: 1},
-    //   {id: 6, laboratorio: {id: 2, nombre: "AstraZeneca"}, estado:{ id: 3, estado: "Entregado"},  cantidadDosis: 400, costo: 2000, fechaAdquisicion: Date.now(), numeroLote: 1}]
-    // return new Observable<{response: Lot[]}>(observer => observer.next({response: laboratories}));
-    // URL ORIGINAL
     return this.http.get(this.urlVaccine+'/getLotes').pipe(map((lot: Response<Lot[]>) => lot));
   }
 

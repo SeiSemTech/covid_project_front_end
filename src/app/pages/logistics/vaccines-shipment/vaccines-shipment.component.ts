@@ -18,7 +18,7 @@ import {MatDialog} from "@angular/material/dialog";
   templateUrl: './vaccines-shipment.component.html',
   styleUrls: ['./vaccines-shipment.component.scss']
 })
-export class VaccinesShipmentComponent implements OnInit, AfterViewInit {
+export class VaccinesShipmentComponent implements OnInit {
 
   displayedColumns2: string[] = ['id', 'depa_nombre', 'muni_nombre', 'sede_nombre', 'direccion', 'telefono', 'cantidad'];
   public form: FormGroup;
@@ -46,6 +46,8 @@ export class VaccinesShipmentComponent implements OnInit, AfterViewInit {
 
     this.vaccinesShipmentService.getAllMedicalCenters().subscribe(data2 => {
       this.dataSource2 = new MatTableDataSource<Send>(data2.response);
+      this.dataSource2.paginator = this.paginator;
+      this.dataSource2.sort = this.sort;
     });
 
     this.form = this.formBuilder.group({
@@ -80,11 +82,6 @@ export class VaccinesShipmentComponent implements OnInit, AfterViewInit {
         data: {message: response.mensaje, icon: "check", button: "¡Listo!"}
       })
     );
-  }
-
-  ngAfterViewInit() {
-    this.dataSource2.paginator = this.paginator;
-    this.dataSource2.sort = this.sort;
   }
 
   applyFilter(event: Event) {

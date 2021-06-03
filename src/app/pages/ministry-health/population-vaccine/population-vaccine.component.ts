@@ -10,7 +10,7 @@ import {MatSort} from "@angular/material/sort";
   templateUrl: './population-vaccine.component.html',
   styleUrls: ['./population-vaccine.component.scss']
 })
-export class PopulationVaccineComponent implements OnInit, AfterViewInit {
+export class PopulationVaccineComponent implements OnInit {
 
   displayedColumns: string[] = ['id', 'documento', 'paciente', 'fecha_nacimiento', 'ocupacion', 'etapa', 'estadoPaciente','centroSalud'];
   dataSource = new MatTableDataSource<Poblacion>();
@@ -22,13 +22,10 @@ export class PopulationVaccineComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.populationService.getAllProfiles().subscribe(data => {
       console.log(data);
-      this.dataSource = new MatTableDataSource<Poblacion>(data.response)
+      this.dataSource = new MatTableDataSource<Poblacion>(data.response);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     })
-  }
-
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
   }
 
   applyFilter(event: Event) {

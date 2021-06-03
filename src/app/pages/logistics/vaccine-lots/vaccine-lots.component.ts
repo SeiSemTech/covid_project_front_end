@@ -16,7 +16,7 @@ import {MatDialog} from "@angular/material/dialog";
   templateUrl: './vaccine-lots.component.html',
   styleUrls: ['./vaccine-lots.component.scss'],
 })
-export class VaccineLotsComponent implements OnInit, AfterViewInit {
+export class VaccineLotsComponent implements OnInit {
 
   displayedColumns: string[] = ['id', 'cantidad', 'laboratorio', 'fecha', 'estado', 'action'];
   public form: FormGroup;
@@ -32,7 +32,9 @@ export class VaccineLotsComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.laboratoryService.getAllLaboratories().subscribe(data => this.laboratories = data.response);
     this.vaccineLotsService.getAllVaccineLots().subscribe(data => {
-      this.dataSource = new MatTableDataSource<Lot>(data.response)
+      this.dataSource = new MatTableDataSource<Lot>(data.response);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     });
     this.initForm();
   }
@@ -69,11 +71,6 @@ export class VaccineLotsComponent implements OnInit, AfterViewInit {
       this.form.setValue(lot);
       this.form.controls['laboratorio'].setValue(lot.laboratorio);
     }
-  }
-
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
   }
 
   applyFilter(event: Event) {
