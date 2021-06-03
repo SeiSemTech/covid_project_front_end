@@ -1,10 +1,9 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Laboratory} from '../../../core/models/laboratory';
 import {LaboratoryService} from '../../../shared/services/laboratory.service';
 import {MatTableDataSource} from '@angular/material/table';
 import {Lot} from '../../../core/models/Lot';
-import {User} from '../../../core/models/User';
 import {MedicalCentersService} from '../../../shared/services/medical-centers.service';
 import {Send} from "../../../core/models/Send";
 import {VaccineLotsService} from "../../../shared/services/vaccine-lots.service";
