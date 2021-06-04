@@ -76,8 +76,8 @@ export class VaccinesShipmentComponent implements OnInit {
   }
 
   save() {
-    this.send.lote = this.form.value.cantidad;
-    this.vaccinesShipmentService.updateMedicalCenters(this.send).subscribe(response =>
+    const algo = {id: this.form.value.id, cantidad: this.form.value.cantidad}
+    this.vaccinesShipmentService.updateMedicalCenters(algo).subscribe(response =>
       this.dialog.open(MessageComponent, {
         data: {message: response.mensaje, icon: "check", button: "¡Listo!"}
       })

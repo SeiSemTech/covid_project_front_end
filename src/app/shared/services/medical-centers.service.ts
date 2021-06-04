@@ -20,7 +20,7 @@ export class MedicalCentersService {
     return this.http.get(this.urlVaccine+'/getCentros').pipe(map((send: Response<Send[]>) => send));
   }
 
-  public updateMedicalCenters(send: Send): Observable<any> {
+  public updateMedicalCenters(send: {cantidad: number, id: number}): Observable<any> {
     return this.http.post(this.urlVaccine+'/enviarVacuna', send).pipe(map(send => send));
   }
 }

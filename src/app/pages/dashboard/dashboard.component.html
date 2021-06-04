@@ -26,15 +26,15 @@
     *ngIf="isRole('ROLE_PERSONAL')"
     (click)="goTo(paths.MINISTRY_HEALTH.PRINCIPAL+'/'+paths.MINISTRY_HEALTH.BUSINESS_RULES)"
     icon='profile_nurse' color='light'
-    titulo='Aplicación de vacuna'
-    subtitulo='Personal de la salud'>
+    titulo='Reglas de decision'
+    subtitulo='Ministerio de salud'>
   </app-card>
   <app-card
-    *ngIf="isRole('ROLE_COORDINADOR')"
+    *ngIf="isRole('ROLE_PERSONAL')"
     (click)="goTo(paths.MINISTRY_HEALTH.PRINCIPAL+'/'+paths.MINISTRY_HEALTH.POPULATION_TO_VACCINE)"
-    icon='profile_medical_center' color='red'
-    titulo='Aplicación de vacuna'
-    subtitulo='Personal de la salud'>
+    icon='profile_nurse' color='light'
+    titulo='Población a vacunar'
+    subtitulo='Ministerio de salud'>
   </app-card>
 </div>
 
