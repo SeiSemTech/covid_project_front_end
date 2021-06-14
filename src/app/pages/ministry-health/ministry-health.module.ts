@@ -13,6 +13,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {SharedModule} from "../../shared/shared.module";
 import {MatInputModule} from "@angular/material/input";
 import {MatPaginatorModule} from "@angular/material/paginator";
+import { AgmCoreModule } from '@agm/core';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import {MatPaginatorModule} from "@angular/material/paginator";
     MatFormFieldModule,
     MatIconModule,
     SharedModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    AgmCoreModule.forRoot({apiKey: "AIzaSyCWHKoUxXTdr_k9qBPQ7VN_am27M2Ac7Hs"}),
   ]
 })
 export class MinistryHealthModule { }
