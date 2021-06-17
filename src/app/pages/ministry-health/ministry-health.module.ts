@@ -17,6 +17,7 @@ import { AgmCoreModule } from '@agm/core';
 import { PopulationMapComponent } from './population-vaccine/population-map/population-map.component'
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatButtonModule} from '@angular/material/button';
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -25,23 +26,24 @@ import {MatButtonModule} from '@angular/material/button';
     PopulationVaccineComponent,
     PopulationMapComponent
   ],
-  imports: [
-    CommonModule,
-    MinistryHealthRoutingModule,
-    MatFormFieldModule,
-    MatInputModule,
-    TitleBarModule,
-    InfoPanelModule,
-    MatCardModule,
-    PipesModule,
-    MatTableModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatDialogModule,
-    SharedModule,
-    MatPaginatorModule,
-    AgmCoreModule.forRoot({apiKey: "AIzaSyCWHKoUxXTdr_k9qBPQ7VN_am27M2Ac7Hs"}),
-    MatButtonModule,
-  ]
+    imports: [
+        CommonModule,
+        MinistryHealthRoutingModule,
+        MatFormFieldModule,
+        MatInputModule,
+        TitleBarModule,
+        InfoPanelModule,
+        MatCardModule,
+        PipesModule,
+        MatTableModule,
+        MatFormFieldModule,
+        MatIconModule,
+        MatDialogModule,
+        SharedModule,
+        MatPaginatorModule,
+        AgmCoreModule.forRoot({apiKey: "AIzaSyCWHKoUxXTdr_k9qBPQ7VN_am27M2Ac7Hs"}),
+        MatButtonModule,
+        ReactiveFormsModule,
+    ]
 })
 export class MinistryHealthModule { }

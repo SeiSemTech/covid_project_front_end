@@ -1,4 +1,21 @@
+<div class="map-header">
+  <mat-icon class="map-header-icon">home</mat-icon>
+  <div class="map-header-title">Modificación nueva dirección de usuario</div>
+</div>
+<form [formGroup]="address" (ngSubmit)="modifyAddress()" class="register_square_r_form">
 <div class="containerm">
+  <mat-form-field appearance="legacy" style="width: 60%">
+    <mat-label>Ingresa tu nueva dirección</mat-label>
+    <input matInput placeholder="Cra 17a # 175-82" [formControl]="address" required>
+    <mat-error *ngIf="address.invalid">{{getErrorMessage()}}</mat-error>
+  </mat-form-field>
+
+  <button mat-raised-button type="submit" color="primary" [disabled]="address.invalid"
+          style="margin-bottom: 2vmax; margin-top: 1vmax">
+    <mat-icon>search</mat-icon>
+    Buscar centro medico mas cercano
+  </button>
+
   <agm-map class="mapa" [latitude]="ubicacionCentral.latitud" [longitude]="ubicacionCentral.longitud" [zoom]="12">
     <agm-marker *ngFor="let coord of coordenadas" [latitude]="coord.latitud" [longitude]="coord.longitud">
       <agm-info-window>

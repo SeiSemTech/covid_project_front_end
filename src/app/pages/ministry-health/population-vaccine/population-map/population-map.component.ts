@@ -1,34 +1,29 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatTableDataSource} from "@angular/material/table";
-import {Poblacion} from "../../../../core/models/Poblacion";
+import {Component, OnInit} from '@angular/core';
 import {PopulationService} from "../../../../shared/services/population.service";
 import {MatDialog} from "@angular/material/dialog";
-import {MatPaginator} from "@angular/material/paginator";
-import {MatSort} from "@angular/material/sort";
-
-
-export class Coordenada {
-  latitud: number;
-  longitud: number;
-  name: String;
-  constructor(lat: number, long: number, name:string ){
-    this.latitud = lat;
-    this.longitud = long;
-    this.name = name;
-  }
-}
+import {FormControl, Validators} from "@angular/forms";
+import {LocationService} from "../../../../shared/services/location.service";
+import {Coordenada} from "../../../../core/models/Coordenada";
 
 @Component({
   selector: 'app-population-map',
   templateUrl: './population-map.component.html',
   styleUrls: ['./population-map.component.scss']
 })
-export class PopulationMapComponent implements OnInit {
+export class PopulationMapComponent implements OnInit{
 
-  displayedColumns: string[] = ['id', 'documento', 'paciente', 'fecha_nacimiento', 'ocupacion', 'etapa', 'estadoPaciente', 'centroSalud'];
-  dataSource = new MatTableDataSource<Poblacion>();
   ubicacionCentral: Coordenada | undefined;
   ubicacionEnProceso: Coordenada | undefined;
+
+  address = new FormControl('', [Validators.required]);
+
+  getErrorMessage() {
+    if (this.address.hasError('required')) {
+      return 'You must enter a value';
+    }
+
+    return this.address.hasError('address') ? 'Not a valid address' : '';
+  }
 
   datos = {
     "coordinateList": [
@@ -42,16 +37,6 @@ export class PopulationMapComponent implements OnInit {
         "y": -74.04156321729367,
         "address": "Cl. 142 #111A-06, Suba, Bogotá"
       },
-      {
-        "x": 35.36100524652076,
-        "y": 138.72733665437113,
-        "address": "Monte Fuji, Honshu, Japón"
-      },
-      {
-        "x": 51.12975003718817,
-        "y": 71.4223813141149,
-        "address": "Nurzhol Boulevard, Astaná, Kazakhstan"
-      }
     ],
     "input": {
       "x": 4.751649608927578,
@@ -59,41 +44,45 @@ export class PopulationMapComponent implements OnInit {
       "address": "Conjunto arboleda del parque"
     }
   }
-  coordenadas : Coordenada[] = [];
+  coordenadas: Coordenada[] = [];
 
-  constructor(private populationService: PopulationService, public dialog: MatDialog) { }
-
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+  constructor(
+    private populationService: PopulationService,
+    public dialog: MatDialog,
+    private locationService: LocationService) {
+  }
 
   ngOnInit(): void {
     this.ubicacionCentral = new Coordenada(this.datos.input.x, this.datos.input.y, this.datos.input.address);
     this.load();
-    this.populationService.getAllProfiles().subscribe(data => {
-      console.log(data);
-      this.dataSource = new MatTableDataSource<Poblacion>(data.response);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-    });
-  }
-
-  applyFilter(event: Event) {
-    this.dataSource.filter = (event.target as HTMLInputElement).value.trim().toLowerCase();
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
   }
 
   load() {
     // let coord = new Coordenada($event.coords.lat, $event.coords.lng);
     this.datos.coordinateList.forEach(lugar => {
       let ubicacionData = {
-        position: { lat: lugar.x, lng: lugar.y },
+        position: {lat: lugar.x, lng: lugar.y},
         name: lugar.address
       }
-      let coord = new Coordenada(ubicacionData.position.lat, ubicacionData.position.lng,ubicacionData.name);
+      let coord = new Coordenada(ubicacionData.position.lat, ubicacionData.position.lng, ubicacionData.name);
       this.coordenadas.push(coord);
     });
   }
 
+  modifyAddress() {
+    console.log(this.address.value);
+    this.locationService.getClosestAddress({input: this.address.value}).subscribe();
+  }
+
+  saveNewAddress(newAddress: NewAddress) {
+    this.populationService.updatePatient(newAddress).subscribe();
+  }
+
+}
+
+export class NewAddress {
+  id: number;
+  centroSalud: {
+    id: number;
+  };
 }

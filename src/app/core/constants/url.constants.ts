@@ -3,6 +3,7 @@ export const URL = {
   USER: `/user`,
   ROL: `/rol`,
   POPULATION: `/paciente`,
+  LOCATION: `/location`,
   LOT: `/lote`,
   LABORATORY: `/laboratory`,
   VACCINE: `/vacuna`,
