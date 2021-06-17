@@ -13,12 +13,17 @@ import {MatIconModule} from "@angular/material/icon";
 import {SharedModule} from "../../shared/shared.module";
 import {MatInputModule} from "@angular/material/input";
 import {MatPaginatorModule} from "@angular/material/paginator";
+import { AgmCoreModule } from '@agm/core';
+import { PopulationMapComponent } from './population-vaccine/population-map/population-map.component'
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatButtonModule} from '@angular/material/button';
 
 
 @NgModule({
   declarations: [
     BusinessRulesComponent,
-    PopulationVaccineComponent
+    PopulationVaccineComponent,
+    PopulationMapComponent
   ],
   imports: [
     CommonModule,
@@ -32,8 +37,11 @@ import {MatPaginatorModule} from "@angular/material/paginator";
     MatTableModule,
     MatFormFieldModule,
     MatIconModule,
+    MatDialogModule,
     SharedModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    AgmCoreModule.forRoot({apiKey: "AIzaSyCWHKoUxXTdr_k9qBPQ7VN_am27M2Ac7Hs"}),
+    MatButtonModule,
   ]
 })
 export class MinistryHealthModule { }
