@@ -63,12 +63,8 @@ export class PopulationMapComponent implements OnInit{
     })
   }
 
-  saveNewAddress(newAddress: NewAddress) {
-    this.populationService.updatePatient(newAddress).subscribe();
-  }
-
   savePlace() {
-    const save = {id: this.data.id, centroSalud: this.coordenada.id};
+    const save:NewAddress = {id: this.data.id, centroSalud: {id: this.coordenada.id}};
     this.populationService.updatePatient(save).subscribe();
   }
 
