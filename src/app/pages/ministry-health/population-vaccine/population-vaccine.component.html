@@ -1,12 +1,12 @@
 <div class="container">
-  <div style="width: 20%">
+  <div style="width: 15%">
     <app-info-panel title="Atención" icon="message_alert">
       <div>Se informa que las reglas de decisión que se toman para definir la prioridad de vacunación se encuentran en
         el modulo <b>Reglas de decisión</b>.
       </div>
     </app-info-panel>
   </div>
-  <div style="width: 78%">
+  <div style="width: 83%">
     <app-title-bar color="red" icon="vaccine" title="Población a vacunar"></app-title-bar>
 
     <div class="patients_table">
@@ -18,7 +18,6 @@
         </mat-form-field>
       </div>
       <table mat-table [dataSource]="dataSource" class="patients_table_content">
-        <mat-text-column name="id" headerText="Id"></mat-text-column>
         <ng-container matColumnDef="documento">
           <th mat-header-cell *matHeaderCellDef>Documento</th>
           <td mat-cell *matCellDef="let population">{{population.tipo_documento}} {{population.id_cedula}}</td>
@@ -30,10 +29,6 @@
         <ng-container matColumnDef="fecha_nacimiento">
           <th mat-header-cell *matHeaderCellDef>Fecha de nacimiento</th>
           <td mat-cell *matCellDef="let population">{{population.fecha_nacimiento | date: 'mediumDate'}}</td>
-        </ng-container>
-        <ng-container matColumnDef="ocupacion">
-          <th mat-header-cell *matHeaderCellDef>Ocupación</th>
-          <td mat-cell *matCellDef="let population">{{population.ocupacion.nombre.substring(0,40)}}{{population.ocupacion.nombre.length > 40 ? '...' : ''}}</td>
         </ng-container>
         <ng-container matColumnDef="etapa">
           <th mat-header-cell *matHeaderCellDef>Etapa</th>
@@ -47,6 +42,15 @@
           <th mat-header-cell *matHeaderCellDef>Centro de salud asignado</th>
           <td mat-cell *matCellDef="let population">{{population.centroSalud.sede_nombre}}<br>{{population.centroSalud.direccion}}</td>
         </ng-container>
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let action" class="patients_table_content-actions">
+            <button mat-raised-button color="primary" (click)="openDialog(action)">
+              Cambiar centro salud
+            </button>
+          </td>
+        </ng-container>
+
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 

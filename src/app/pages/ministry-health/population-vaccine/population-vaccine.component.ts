@@ -1,9 +1,11 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {Poblacion} from "../../../core/models/Poblacion";
 import {PopulationService} from "../../../shared/services/population.service";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
+import {MatDialog} from "@angular/material/dialog";
+import {PopulationMapComponent} from "./population-map/population-map.component";
 
 @Component({
   selector: 'app-population-vaccine',
@@ -12,9 +14,10 @@ import {MatSort} from "@angular/material/sort";
 })
 export class PopulationVaccineComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'documento', 'paciente', 'fecha_nacimiento', 'ocupacion', 'etapa', 'estadoPaciente','centroSalud'];
+  displayedColumns: string[] = ['documento', 'paciente', 'fecha_nacimiento', 'etapa', 'estadoPaciente', 'centroSalud', 'action'];
   dataSource = new MatTableDataSource<Poblacion>();
-  constructor(private populationService: PopulationService) { }
+
+  constructor(private populationService: PopulationService, public dialog: MatDialog) { }
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -25,7 +28,7 @@ export class PopulationVaccineComponent implements OnInit {
       this.dataSource = new MatTableDataSource<Poblacion>(data.response);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-    })
+    });
   }
 
   applyFilter(event: Event) {
@@ -34,5 +37,7 @@ export class PopulationVaccineComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
+
+  openDialog = (action: Poblacion) => this.dialog.open(PopulationMapComponent, {data: action});
 
 }

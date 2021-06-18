@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PopulationVaccineComponent } from './population-vaccine.component';
+import { PopulationMapComponent } from './population-map.component';
 
-describe('PopulationVaccineComponent', () => {
-  let component: PopulationVaccineComponent;
-  let fixture: ComponentFixture<PopulationVaccineComponent>;
+describe('PopulationMapComponent', () => {
+  let component: PopulationMapComponent;
+  let fixture: ComponentFixture<PopulationMapComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PopulationVaccineComponent ]
+      declarations: [ PopulationMapComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PopulationVaccineComponent);
+    fixture = TestBed.createComponent(PopulationMapComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -22,6 +22,4 @@ describe('PopulationVaccineComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
-
 });

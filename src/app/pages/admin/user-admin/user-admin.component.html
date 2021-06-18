@@ -54,6 +54,7 @@
           <th mat-header-cell *matHeaderCellDef>Fecha ingreso</th>
           <td mat-cell *matCellDef="let user">{{user.creationDate | date: 'mediumDate'}}</td>
         </ng-container>
+
         <ng-container matColumnDef="action">
           <th mat-header-cell *matHeaderCellDef></th>
           <td mat-cell *matCellDef="let action" class="users_table_content-actions">

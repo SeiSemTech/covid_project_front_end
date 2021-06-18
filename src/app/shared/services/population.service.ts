@@ -21,4 +21,9 @@ export class PopulationService {
       return r;
     }));
   }
+
+  public updatePatient(patient: any): Observable<Response<any>> {
+    return this.http.post(this.urlProfile + 'updatedPaciente', patient).pipe(map( (r: Response<any>) => r));
+  }
+
 }

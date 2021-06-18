@@ -5,7 +5,7 @@ import {Send} from "./Send";
 export class Poblacion {
   id: number;
   id_cedula: string;
-  tipo_documento: String;
+  tipo_documento: string;
   nombre_paciente: string;
   apellido_paciente: string;
   fechaNacimiento: number;

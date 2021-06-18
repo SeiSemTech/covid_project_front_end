@@ -14,6 +14,10 @@ tr.example-element-row:not(.example-expanded-row):active {
   background: #efefef;
 }
 
+.example-button-row {
+  display: table-cell;
+  width: 490px;
+}
 
 .container {
   display: flex;
@@ -63,6 +67,7 @@ tr.example-element-row:not(.example-expanded-row):active {
       justify-content: space-between;
 
       &-filter { width: 30% }
+
     }
 
     &_content {
