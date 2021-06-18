@@ -14,7 +14,7 @@ import {PopulationMapComponent} from "./population-map/population-map.component"
 })
 export class PopulationVaccineComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'documento', 'paciente', 'fecha_nacimiento', 'ocupacion', 'etapa', 'estadoPaciente', 'centroSalud', 'action'];
+  displayedColumns: string[] = ['documento', 'paciente', 'fecha_nacimiento', 'etapa', 'estadoPaciente', 'centroSalud', 'action'];
   dataSource = new MatTableDataSource<Poblacion>();
 
   constructor(private populationService: PopulationService, public dialog: MatDialog) { }
@@ -38,6 +38,6 @@ export class PopulationVaccineComponent implements OnInit {
     }
   }
 
-  openDialog = () => this.dialog.open(PopulationMapComponent);
+  openDialog = (action: Poblacion) => this.dialog.open(PopulationMapComponent, {data: action});
 
 }

@@ -1,9 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {PopulationService} from "../../../../shared/services/population.service";
-import {MatDialog} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialog} from "@angular/material/dialog";
 import {FormControl, Validators} from "@angular/forms";
 import {LocationService} from "../../../../shared/services/location.service";
 import {Coordenada} from "../../../../core/models/Coordenada";
+import {User} from "../../../../core/models/User";
+import {Poblacion} from "../../../../core/models/Poblacion";
 
 @Component({
   selector: 'app-population-map',
@@ -13,7 +15,8 @@ import {Coordenada} from "../../../../core/models/Coordenada";
 export class PopulationMapComponent implements OnInit{
 
   ubicacionCentral: Coordenada | undefined;
-  ubicacionEnProceso: Coordenada | undefined;
+  coordenada: Coordenada;
+  error: boolean = true;
 
   address = new FormControl('', [Validators.required]);
 
@@ -25,57 +28,48 @@ export class PopulationMapComponent implements OnInit{
     return this.address.hasError('address') ? 'Not a valid address' : '';
   }
 
-  datos = {
-    "coordinateList": [
-      {
-        "x": 4.7501342399421445,
-        "y": -74.09565336843772,
-        "address": "Cra. 104 #148 - 07, Bogotá, Cundinamarca"
-      },
-      {
-        "x": 4.702362865602372,
-        "y": -74.04156321729367,
-        "address": "Cl. 142 #111A-06, Suba, Bogotá"
-      },
-    ],
-    "input": {
-      "x": 4.751649608927578,
-      "y": -74.0970145448742,
-      "address": "Conjunto arboleda del parque"
-    }
-  }
-  coordenadas: Coordenada[] = [];
-
   constructor(
     private populationService: PopulationService,
     public dialog: MatDialog,
+    @Inject(MAT_DIALOG_DATA) public data: Poblacion,
     private locationService: LocationService) {
   }
 
   ngOnInit(): void {
-    this.ubicacionCentral = new Coordenada(this.datos.input.x, this.datos.input.y, this.datos.input.address);
-    this.load();
+    console.log(this.data);
+    // this.ubicacionCentral = new Coordenada(this.datos.input.x, this.datos.input.y, this.datos.input.address, 1);
+    // this.load();
   }
 
   load() {
     // let coord = new Coordenada($event.coords.lat, $event.coords.lng);
-    this.datos.coordinateList.forEach(lugar => {
-      let ubicacionData = {
-        position: {lat: lugar.x, lng: lugar.y},
-        name: lugar.address
-      }
-      let coord = new Coordenada(ubicacionData.position.lat, ubicacionData.position.lng, ubicacionData.name);
-      this.coordenadas.push(coord);
-    });
+    // this.datos.coordinateList.forEach(lugar => {
+    //   let ubicacionData = {
+    //     position: {lat: lugar.x, lng: lugar.y},
+    //     name: lugar.address
+    //   }
+    //   let coord = new Coordenada(ubicacionData.position.lat, ubicacionData.position.lng, ubicacionData.name);
+    //   this.coordenadas.push(coord);
+    // });
   }
 
   modifyAddress() {
     console.log(this.address.value);
-    this.locationService.getClosestAddress({input: this.address.value}).subscribe();
+    // this.locationService.getLocation(this.address.value).subscribe(a => console.log(a));
+    this.locationService.getClosestAddress({input: this.address.value}).subscribe( a => {
+      let coordinate: Coordenada = new Coordenada(a.response.x, a.response.y, a.response.address, a.response.id);
+      this.error = a.error != 0;
+      this.coordenada = coordinate;
+    })
   }
 
   saveNewAddress(newAddress: NewAddress) {
     this.populationService.updatePatient(newAddress).subscribe();
+  }
+
+  savePlace() {
+    const save = {id: this.data.id, centroSalud: this.coordenada.id};
+    this.populationService.updatePatient(save).subscribe();
   }
 
 }

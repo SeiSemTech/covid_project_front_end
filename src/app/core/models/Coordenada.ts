@@ -1,11 +1,13 @@
 export class Coordenada {
-  latitud: number;
-  longitud: number;
+  x: number;
+  y: number;
   name: String;
+  id: number;
 
-  constructor(lat: number, long: number, name: string) {
-    this.latitud = lat;
-    this.longitud = long;
+  constructor(lat: number, long: number, name: string, id: number) {
+    this.x = lat;
+    this.y = long;
     this.name = name;
+    this.id = id;
   }
 }
